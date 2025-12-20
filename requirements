@@ -1,0 +1,11 @@
+torch
+transformers
+datasets
+sentencepiece
+scikit-learn
+pandas
+numpy
+whisper
+spacy
+tqdm
+pyyaml
