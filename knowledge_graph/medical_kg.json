@@ -1,0 +1,52 @@
+{
+  "0": {
+    "name": "General wellness",
+    "description": "No clinically significant symptoms detected. The input appears consistent with a normal or healthy state.",
+    "action": "No medical action required"
+  },
+  "1": {
+    "name": "Mild fatigue or stress",
+    "description": "Symptoms may be related to tiredness, stress, or lack of rest.",
+    "action": "Rest, hydrate, and monitor symptoms"
+  },
+  "2": {
+    "name": "Headache or neurological discomfort",
+    "description": "Head pain, dizziness, or related neurological discomfort.",
+    "action": "Rest and seek medical advice if persistent"
+  },
+  "3": {
+    "name": "Respiratory symptoms",
+    "description": "Symptoms involving breathing difficulty, cough, or chest discomfort.",
+    "action": "Consult a doctor if breathing becomes difficult"
+  },
+  "4": {
+    "name": "Fever or infection",
+    "description": "Elevated body temperature or signs of infection.",
+    "action": "Monitor temperature and seek medical care if fever persists"
+  },
+  "5": {
+    "name": "Musculoskeletal pain",
+    "description": "Pain in muscles, joints, or bones.",
+    "action": "Rest affected area and consult if pain continues"
+  },
+  "6": {
+    "name": "Digestive discomfort",
+    "description": "Indigestion, bloating, or mild stomach discomfort.",
+    "action": "Dietary adjustments and hydration"
+  },
+  "7": {
+    "name": "Nausea or vomiting",
+    "description": "Feeling sick or episodes of vomiting.",
+    "action": "Hydration and medical advice if severe"
+  },
+  "8": {
+    "name": "Gastrointestinal pain",
+    "description": "Stomach ache, abdominal pain, or digestive tract discomfort.",
+    "action": "Consult a doctor if pain persists or worsens"
+  },
+  "9": {
+    "name": "Unclassified or unclear symptoms",
+    "description": "The symptoms provided do not clearly match known clinical patterns.",
+    "action": "Monitor symptoms and consult a healthcare professional"
+  }
+}
