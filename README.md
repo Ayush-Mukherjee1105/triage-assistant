@@ -1,4 +1,4 @@
-# triage-assistant
+# Triage-assistant
 
 A lightweight assistant for automated issue and alert triage: classifies, prioritizes, and suggests actions for incoming items to speed up team response.
 
