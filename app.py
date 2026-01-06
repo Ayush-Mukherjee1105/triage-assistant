@@ -17,7 +17,7 @@ st.set_page_config(
     layout="centered"
 )
 
-st.title("🩺 AI Clinical Triage Assistant")
+st.title("AI Clinical Triage Assistant")
 st.caption(
     "AI-assisted preliminary triage guidance — not a medical diagnosis."
 )
@@ -50,7 +50,7 @@ if st.button("Analyze") and text.strip():
     # -------------------------
 
     st.divider()
-    st.subheader("🧠 AI Assessment")
+    st.subheader("AI Assessment")
 
     st.write(f"**Detected Language:** {language} (confidence: {lang_conf:.2f})")
     st.write(f"**Model Confidence:** `{model_conf:.2f}`")
@@ -59,14 +59,14 @@ if st.button("Analyze") and text.strip():
     # SEVERITY
     # -------------------------
 
-    st.subheader("⚖️ Severity Assessment")
+    st.subheader("Severity Assessment")
 
     if severity == "HIGH":
-        st.error("🚑 Urgent medical attention recommended")
+        st.error("!!Urgent medical attention recommended!!")
     elif severity == "MODERATE":
-        st.warning("🩺 Medical evaluation advised")
+        st.warning("!Medical evaluation advised!")
     else:
-        st.success("🟢 Self-care advised")
+        st.success("Self-care advised")
 
     st.write(f"**Severity Level:** {severity}")
     st.write(f"**Recommended Action:** {action}")
@@ -78,13 +78,13 @@ if st.button("Analyze") and text.strip():
 
     if intent == "INJURY":
         st.info(
-            "⚠️ Injury-related symptoms detected. "
+            "Injury-related symptoms detected. "
             "Watch for worsening pain, confusion, vomiting, or loss of consciousness."
         )
 
     elif intent == "LIFESTYLE":
         st.info(
-            "💤 Lifestyle-related concern detected. "
+            "Lifestyle-related concern detected. "
             "Stress, sleep disruption, or fatigue may be contributing factors."
         )
 
@@ -93,7 +93,7 @@ if st.button("Analyze") and text.strip():
     # -------------------------
 
     if model_conf >= CONFIDENCE_THRESHOLD:
-        st.subheader("🧪 Likely Condition (Model-Assisted)")
+        st.subheader("Likely Condition (Model-Assisted)")
         st.write(f"**Likely Condition:** {label}")
 
         guidance = enrich_prediction(label)
@@ -109,7 +109,7 @@ if st.button("Analyze") and text.strip():
     # EXPLANATION
     # -------------------------
 
-    st.subheader("🧬 Model Explanation (XAI)")
+    st.subheader("Model Explanation (XAI)")
     try:
         explanations = explain(text)
         for tok, score in explanations:
