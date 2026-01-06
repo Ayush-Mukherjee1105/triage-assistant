@@ -1,30 +1,44 @@
-import re
+from transformers import pipeline
 
-def extract_clinical_entities(text: str):
-    text = text.lower()
+# Load once (GPU-aware)
+_ner_pipeline = pipeline(
+    "ner",
+    model="d4data/biomedical-ner-all",
+    aggregation_strategy="simple",
+    device=0  # uses CUDA if available
+)
 
+def extract_clinical_entities(text: str) -> dict:
+    """
+    Extracts clinical entities and normalizes them
+    for downstream severity / triage logic.
+    """
     entities = {
-        "loss_of_consciousness": False,
-        "memory_loss": False,
-        "vomiting": False,
-        "severe_pain": False,
-        "fever_days": 0
+        "symptoms": [],
+        "conditions": [],
+        "durations": [],
+        "body_parts": [],
     }
 
-    if re.search(r"passed out|unconscious|fainted", text):
-        entities["loss_of_consciousness"] = True
+    if not text or not text.strip():
+        return entities
 
-    if re.search(r"don'?t remember|memory loss|confused", text):
-        entities["memory_loss"] = True
+    results = _ner_pipeline(text)
 
-    if "vomit" in text:
-        entities["vomiting"] = True
+    for r in results:
+        label = r.get("entity_group", "").lower()
+        value = r.get("word", "").lower()
 
-    if "severe pain" in text or "worst pain" in text:
-        entities["severe_pain"] = True
+        if label in ["sign_symptom", "symptom"]:
+            entities["symptoms"].append(value)
 
-    fever_match = re.search(r"fever.*?(\d+)\s*day", text)
-    if fever_match:
-        entities["fever_days"] = int(fever_match.group(1))
+        elif label in ["disease", "diagnosis"]:
+            entities["conditions"].append(value)
+
+        elif label in ["duration", "time"]:
+            entities["durations"].append(value)
+
+        elif label in ["body_part", "anatomy"]:
+            entities["body_parts"].append(value)
 
     return entities

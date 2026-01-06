@@ -1,0 +1,2435 @@
+[
+  {
+    "input_text": "I have had a headache for 3 days now.",
+    "duration_phrase": "for 3 days",
+    "duration_days_min": 3,
+    "duration_days_max": 3,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Exact duration helps assess acuity; persistent headache beyond 72 hours may warrant evaluation."
+  },
+  {
+    "input_text": "I have been coughing since yesterday.",
+    "duration_phrase": "since yesterday",
+    "duration_days_min": 1,
+    "duration_days_max": 1,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Short duration suggests acute condition; triage can remain low unless severe symptoms present."
+  },
+  {
+    "input_text": "I've had chest discomfort on and off for a few weeks.",
+    "duration_phrase": "on and off for a few weeks",
+    "duration_days_min": 14,
+    "duration_days_max": 28,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Intermittent but prolonged chest symptoms increase concern and may elevate triage priority."
+  },
+  {
+    "input_text": "My stomach has been hurting for a long time.",
+    "duration_phrase": "a long time",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Vague duration requires clarification; chronic pain could indicate non-urgent or serious causes."
+  },
+  {
+    "input_text": "I've had a fever for about two weeks.",
+    "duration_phrase": "about two weeks",
+    "duration_days_min": 12,
+    "duration_days_max": 16,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Prolonged fever increases urgency and suggests possible infection or systemic condition."
+  },
+  {
+    "input_text": "My knee pain started this morning.",
+    "duration_phrase": "this morning",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Very recent onset suggests acute injury; triage depends on pain severity and trauma history."
+  },
+  {
+    "input_text": "I've been feeling dizzy for months.",
+    "duration_phrase": "for months",
+    "duration_days_min": 60,
+    "duration_days_max": 180,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Long-standing dizziness suggests chronic condition; non-emergent but needs evaluation."
+  },
+  {
+    "input_text": "I've had back pain ever since my accident.",
+    "duration_phrase": "ever since my accident",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Duration tied to external event; needs timeline clarification to assess chronicity."
+  },
+  {
+    "input_text": "My throat has been sore for a while.",
+    "duration_phrase": "for a while",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Unclear duration; persistent sore throat may require follow-up if lasting beyond a week."
+  },
+  {
+    "input_text": "I've been vomiting continuously for 6 hours.",
+    "duration_phrase": "for 6 hours",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Short but severe symptoms can still require urgent triage due to dehydration risk."
+  },
+
+  {
+    "input_text": "My breathing issues started late last night.",
+    "duration_phrase": "late last night",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Acute respiratory symptoms are high priority regardless of short duration."
+  },
+  {
+    "input_text": "I've had skin rashes on and off for years.",
+    "duration_phrase": "on and off for years",
+    "duration_days_min": 365,
+    "duration_days_max": 3650,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Chronic intermittent symptoms usually lower urgency unless worsening."
+  },
+  {
+    "input_text": "The pain started sometime last week.",
+    "duration_phrase": "sometime last week",
+    "duration_days_min": 5,
+    "duration_days_max": 10,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Recent onset but uncertain timing; triage should remain flexible."
+  },
+  {
+    "input_text": "I've been constipated recently.",
+    "duration_phrase": "recently",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Ambiguous timeframe; severity depends on associated symptoms."
+  },
+  {
+    "input_text": "I've had numbness in my fingers for the past 10 days.",
+    "duration_phrase": "for the past 10 days",
+    "duration_days_min": 10,
+    "duration_days_max": 10,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Persistent neurological symptoms raise concern and should increase triage priority."
+  },
+
+  {
+    "input_text": "I've been feeling tired all the time lately.",
+    "duration_phrase": "lately",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Fatigue with unclear duration is low urgency unless severe or worsening."
+  },
+  {
+    "input_text": "My vision has been blurry for a few days.",
+    "duration_phrase": "for a few days",
+    "duration_days_min": 2,
+    "duration_days_max": 5,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Visual symptoms over multiple days require prompt but not emergency triage."
+  },
+  {
+    "input_text": "I've had this lump for as long as I can remember.",
+    "duration_phrase": "as long as I can remember",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Extremely vague but implies chronicity; usually lower urgency unless changes noted."
+  },
+  {
+    "input_text": "I've been having panic attacks daily for 2 months.",
+    "duration_phrase": "for 2 months",
+    "duration_days_min": 60,
+    "duration_days_max": 60,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Chronic mental health symptoms require structured follow-up rather than emergency care."
+  },
+  {
+    "input_text": "I've been experiencing diarrhea all day.",
+    "duration_phrase": "all day",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Short duration but high frequency symptoms may still require urgent attention."
+  },
+  {
+    "input_text": "I've been having sharp abdominal pain every evening for the last four days.",
+    "duration_phrase": "for the last four days",
+    "duration_days_min": 4,
+    "duration_days_max": 4,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Exact multi-day abdominal pain suggests persistence; evening pattern may warrant further evaluation."
+  },
+  {
+    "input_text": "My ankle has been swollen ever since last weekend.",
+    "duration_phrase": "ever since last weekend",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Event-based timing without clear reference needs clarification; swelling duration affects urgency."
+  },
+  {
+    "input_text": "I've been feeling nauseous on and off throughout the day.",
+    "duration_phrase": "throughout the day",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Short but recurring symptoms may escalate if frequency increases."
+  },
+  {
+    "input_text": "I've had lower back stiffness for nearly a month.",
+    "duration_phrase": "nearly a month",
+    "duration_days_min": 25,
+    "duration_days_max": 30,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Sub-acute musculoskeletal symptoms suggest non-emergent but persistent condition."
+  },
+  {
+    "input_text": "My child has been crying nonstop since early morning.",
+    "duration_phrase": "since early morning",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Continuous symptoms in pediatric cases increase triage sensitivity despite short duration."
+  },
+  {
+    "input_text": "I've had a burning sensation while urinating for the past week.",
+    "duration_phrase": "for the past week",
+    "duration_days_min": 7,
+    "duration_days_max": 7,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Exact duration supports suspected infection; prolonged symptoms raise urgency."
+  },
+  {
+    "input_text": "I've been feeling pressure in my chest recently.",
+    "duration_phrase": "recently",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Chest symptoms with vague duration should be treated cautiously in triage."
+  },
+  {
+    "input_text": "My migraines have been persistent for several weeks now.",
+    "duration_phrase": "for several weeks",
+    "duration_days_min": 21,
+    "duration_days_max": 42,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Ongoing neurological symptoms suggest need for medical review but not emergency."
+  },
+  {
+    "input_text": "I've had ringing in my ears ever since I attended a loud concert.",
+    "duration_phrase": "ever since I attended a loud concert",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Event-linked onset without timing requires clarification; chronic tinnitus lowers urgency."
+  },
+  {
+    "input_text": "I've been sweating excessively for the last 48 hours.",
+    "duration_phrase": "for the last 48 hours",
+    "duration_days_min": 2,
+    "duration_days_max": 2,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Exact multi-day systemic symptom may indicate infection or metabolic issue."
+  },
+  {
+    "input_text": "I've been having trouble sleeping on and off this month.",
+    "duration_phrase": "this month",
+    "duration_days_min": 1,
+    "duration_days_max": 30,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Intermittent sleep issues over weeks are usually low urgency unless impairing function."
+  },
+  {
+    "input_text": "My jaw pain started a couple of hours ago.",
+    "duration_phrase": "a couple of hours ago",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Very recent onset but anatomical location may elevate triage concern."
+  },
+  {
+    "input_text": "I've had bloating for most of the past year.",
+    "duration_phrase": "most of the past year",
+    "duration_days_min": 180,
+    "duration_days_max": 365,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Long-term gastrointestinal symptoms suggest chronic condition rather than emergency."
+  },
+  {
+    "input_text": "I've been experiencing weakness in my legs since my surgery.",
+    "duration_phrase": "since my surgery",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Post-procedural onset requires timeline clarification to assess recovery vs complication."
+  },
+  {
+    "input_text": "I've had mild fever episodes every night for the last five days.",
+    "duration_phrase": "for the last five days",
+    "duration_days_min": 5,
+    "duration_days_max": 5,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Repeated nightly fever over several days increases concern for infection."
+  },
+  {
+    "input_text": "I've had sudden vision flashes for the past two nights.",
+    "duration_phrase": "for the past two nights",
+    "duration_days_min": 2,
+    "duration_days_max": 2,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Neurological visual symptoms over consecutive days raise triage urgency."
+  },
+  {
+    "input_text": "My shoulder has been aching intermittently since last month.",
+    "duration_phrase": "since last month",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Chronic musculoskeletal pain with unclear duration usually lowers urgency."
+  },
+  {
+    "input_text": "I've been short of breath for nearly three days.",
+    "duration_phrase": "nearly three days",
+    "duration_days_min": 2,
+    "duration_days_max": 3,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Respiratory symptoms persisting multiple days require prompt evaluation."
+  },
+  {
+    "input_text": "I've had itchy eyes all week long.",
+    "duration_phrase": "all week long",
+    "duration_days_min": 7,
+    "duration_days_max": 7,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Exact week-long duration suggests allergic or environmental cause."
+  },
+  {
+    "input_text": "I've been feeling pressure in my sinuses every morning lately.",
+    "duration_phrase": "lately",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Recurring symptoms with vague duration need clarification but are usually non-urgent."
+  },
+  {
+    "input_text": "I've had diarrhea episodes twice a day for the last six days.",
+    "duration_phrase": "for the last six days",
+    "duration_days_min": 6,
+    "duration_days_max": 6,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Persistent gastrointestinal symptoms over several days raise dehydration risk."
+  },
+  {
+    "input_text": "My neck stiffness began earlier this afternoon.",
+    "duration_phrase": "earlier this afternoon",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Recent onset stiffness is low urgency unless neurological signs appear."
+  },
+  {
+    "input_text": "I've been experiencing heart palpitations occasionally over the past few months.",
+    "duration_phrase": "over the past few months",
+    "duration_days_min": 60,
+    "duration_days_max": 180,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Intermittent cardiac symptoms over months warrant scheduled evaluation."
+  },
+  {
+    "input_text": "I've had numbness in my toes since waking up today.",
+    "duration_phrase": "since waking up today",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Acute neurological symptoms require monitoring for progression."
+  },
+  {
+    "input_text": "I've been dealing with indigestion off and on for a couple of weeks.",
+    "duration_phrase": "for a couple of weeks",
+    "duration_days_min": 10,
+    "duration_days_max": 14,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Sub-acute digestive symptoms are typically non-urgent unless worsening."
+  },
+  {
+    "input_text": "I've had a low-grade fever most evenings this week.",
+    "duration_phrase": "this week",
+    "duration_days_min": 1,
+    "duration_days_max": 7,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Repeated fever patterns increase suspicion of infection."
+  },
+  {
+    "input_text": "I've been feeling chest tightness briefly over the last hour.",
+    "duration_phrase": "over the last hour",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Very recent chest symptoms require cautious triage despite short duration."
+  },
+  {
+    "input_text": "My joints have been stiff first thing in the morning for several months.",
+    "duration_phrase": "for several months",
+    "duration_days_min": 90,
+    "duration_days_max": 240,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Chronic morning stiffness suggests inflammatory conditions, non-emergent."
+  },
+  {
+    "input_text": "I've had a sore tongue ever since I started a new medication.",
+    "duration_phrase": "ever since I started a new medication",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Medication-related onset requires timeline clarification for adverse effects."
+  },
+  {
+    "input_text": "I've been experiencing chills repeatedly throughout the night.",
+    "duration_phrase": "throughout the night",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Nighttime systemic symptoms may indicate infection even if short-lived."
+  },
+  {
+    "input_text": "I've had persistent acne flare-ups for over a year now.",
+    "duration_phrase": "for over a year",
+    "duration_days_min": 365,
+    "duration_days_max": null,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Long-term dermatological conditions are typically low urgency."
+  },
+  {
+    "input_text": "I've been vomiting occasionally since yesterday evening.",
+    "duration_phrase": "since yesterday evening",
+    "duration_days_min": 1,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Short-term vomiting requires hydration assessment."
+  },
+  {
+    "input_text": "I've had ear pain continuously for the last 36 hours.",
+    "duration_phrase": "for the last 36 hours",
+    "duration_days_min": 1,
+    "duration_days_max": 2,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Persistent localized pain over a day suggests possible infection."
+  },
+  {
+    "input_text": "I've been feeling mentally foggy since early this week.",
+    "duration_phrase": "since early this week",
+    "duration_days_min": 3,
+    "duration_days_max": 7,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Cognitive symptoms over several days warrant assessment but are not emergent."
+  },
+  {
+    "input_text": "I've had muscle cramps sporadically for quite some time.",
+    "duration_phrase": "for quite some time",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Vague chronic symptoms require clarification; urgency depends on severity."
+  },
+  {
+    "input_text": "I've been experiencing nasal congestion nonstop for 9 days.",
+    "duration_phrase": "for 9 days",
+    "duration_days_min": 9,
+    "duration_days_max": 9,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Exact prolonged congestion may indicate sinus infection."
+  },
+  {
+    "input_text": "I've had mild tremors in my hands intermittently over the past year.",
+    "duration_phrase": "over the past year",
+    "duration_days_min": 365,
+    "duration_days_max": 365,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Long-term intermittent tremors are typically non-urgent but need evaluation."
+  },
+  {
+    "input_text": "I've been experiencing pelvic discomfort for several days now.",
+    "duration_phrase": "for several days",
+    "duration_days_min": 3,
+    "duration_days_max": 6,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Sub-acute pelvic symptoms require assessment but are rarely emergent."
+  },
+  {
+    "input_text": "I've had episodes of rapid heartbeat since this morning.",
+    "duration_phrase": "since this morning",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Acute cardiac symptoms elevate triage concern regardless of duration."
+  },
+  {
+    "input_text": "I've been feeling unusually thirsty over the last few weeks.",
+    "duration_phrase": "over the last few weeks",
+    "duration_days_min": 14,
+    "duration_days_max": 35,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Persistent systemic symptoms may indicate metabolic issues."
+  },
+  {
+    "input_text": "I've had hoarseness in my voice for more than ten days.",
+    "duration_phrase": "for more than ten days",
+    "duration_days_min": 10,
+    "duration_days_max": null,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Prolonged hoarseness suggests need for non-urgent evaluation."
+  },
+  {
+    "input_text": "I've been experiencing burning chest pain briefly after meals lately.",
+    "duration_phrase": "lately",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Vague duration but recurring pattern suggests gastrointestinal cause."
+  },
+  {
+    "input_text": "I've had swelling in my fingers ever since cold weather started.",
+    "duration_phrase": "ever since cold weather started",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Season-linked onset without timeline requires clarification."
+  },
+  {
+    "input_text": "I've been having headaches almost daily this month.",
+    "duration_phrase": "this month",
+    "duration_days_min": 1,
+    "duration_days_max": 30,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Frequent headaches over weeks increase concern for chronic condition."
+  },
+  {
+    "input_text": "I've felt sudden weakness in my arms for the last 20 minutes.",
+    "duration_phrase": "for the last 20 minutes",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Acute neurological symptoms require immediate triage attention."
+  },
+  {
+    "input_text": "I've had persistent dry mouth for several weeks now.",
+    "duration_phrase": "for several weeks",
+    "duration_days_min": 21,
+    "duration_days_max": 42,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Chronic symptoms may indicate medication or systemic issues."
+  },
+  {
+    "input_text": "I've been feeling joint pain flare up occasionally since winter began.",
+    "duration_phrase": "since winter began",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Seasonal onset without clear duration typically lowers urgency."
+  },
+  {
+    "input_text": "I've had a constant metallic taste in my mouth for the last 11 days.",
+    "duration_phrase": "for the last 11 days",
+    "duration_days_min": 11,
+    "duration_days_max": 11,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Persistent sensory changes may require medication or systemic review."
+  },
+  {
+    "input_text": "I've been experiencing sharp pain behind my eyes since noon today.",
+    "duration_phrase": "since noon today",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Acute localized pain requires monitoring but duration suggests recent onset."
+  },
+  {
+    "input_text": "I've had stiffness in my fingers every morning for the last eight days.",
+    "duration_phrase": "for the last eight days",
+    "duration_days_min": 8,
+    "duration_days_max": 8,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Persistent morning stiffness suggests inflammatory causes, non-emergent."
+  },
+  {
+    "input_text": "I've been feeling unusually cold on and off since last Thursday.",
+    "duration_phrase": "since last Thursday",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Event-based reference needs clarification to assess chronicity."
+  },
+  {
+    "input_text": "I've had a dull ache in my left hip for close to two weeks.",
+    "duration_phrase": "close to two weeks",
+    "duration_days_min": 12,
+    "duration_days_max": 14,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Sub-acute musculoskeletal pain usually requires outpatient evaluation."
+  },
+  {
+    "input_text": "I've been feeling breathless briefly several times today.",
+    "duration_phrase": "today",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Same-day respiratory symptoms may escalate if frequency increases."
+  },
+  {
+    "input_text": "I've had persistent itching on my scalp for over three weeks.",
+    "duration_phrase": "for over three weeks",
+    "duration_days_min": 21,
+    "duration_days_max": null,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Chronic dermatological symptoms are typically low urgency."
+  },
+  {
+    "input_text": "I've been experiencing stomach cramps intermittently since mid-January.",
+    "duration_phrase": "since mid-January",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Calendar-relative phrasing requires date resolution for triage."
+  },
+  {
+    "input_text": "I've had excessive gas almost every day for the past five weeks.",
+    "duration_phrase": "for the past five weeks",
+    "duration_days_min": 35,
+    "duration_days_max": 35,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Chronic gastrointestinal discomfort is non-emergent unless worsening."
+  },
+  {
+    "input_text": "I've been feeling lightheaded briefly whenever I stand up today.",
+    "duration_phrase": "today",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Orthostatic symptoms today suggest hydration or blood pressure issues."
+  },
+  {
+    "input_text": "I've had pain in my wrist ever since I changed my workout routine.",
+    "duration_phrase": "ever since I changed my workout routine",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Activity-linked onset requires timeline clarification."
+  },
+
+  {
+    "input_text": "I've been experiencing frequent urination throughout the last ten days.",
+    "duration_phrase": "throughout the last ten days",
+    "duration_days_min": 10,
+    "duration_days_max": 10,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Persistent urinary symptoms may indicate infection or metabolic causes."
+  },
+  {
+    "input_text": "I've had mild chest burning episodes every evening this week.",
+    "duration_phrase": "this week",
+    "duration_days_min": 1,
+    "duration_days_max": 7,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Recurring chest discomfort increases triage sensitivity."
+  },
+  {
+    "input_text": "I've been coughing sporadically since the weather changed.",
+    "duration_phrase": "since the weather changed",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Environmental reference requires clarification."
+  },
+  {
+    "input_text": "I've had jaw stiffness for nearly five days now.",
+    "duration_phrase": "nearly five days",
+    "duration_days_min": 4,
+    "duration_days_max": 5,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Short-term jaw stiffness is usually non-urgent."
+  },
+  {
+    "input_text": "I've been experiencing blurry vision off and on for the past nine days.",
+    "duration_phrase": "for the past nine days",
+    "duration_days_min": 9,
+    "duration_days_max": 9,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Repeated visual symptoms over days warrant evaluation."
+  },
+
+  {
+    "input_text": "I've had numbness in my cheek since waking up yesterday.",
+    "duration_phrase": "since waking up yesterday",
+    "duration_days_min": 1,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Facial numbness requires careful triage despite short duration."
+  },
+  {
+    "input_text": "I've been feeling abdominal fullness most afternoons lately.",
+    "duration_phrase": "lately",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Vague duration; pattern recognition helps triage."
+  },
+  {
+    "input_text": "I've had recurring nosebleeds several times this month.",
+    "duration_phrase": "this month",
+    "duration_days_min": 1,
+    "duration_days_max": 30,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Repeated bleeding episodes elevate concern."
+  },
+  {
+    "input_text": "I've been experiencing tingling in my feet for just under a week.",
+    "duration_phrase": "just under a week",
+    "duration_days_min": 5,
+    "duration_days_max": 6,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Sub-acute neurological symptoms need monitoring."
+  },
+  {
+    "input_text": "I've had persistent hiccups since yesterday afternoon.",
+    "duration_phrase": "since yesterday afternoon",
+    "duration_days_min": 1,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Unusual persistent symptoms may need review."
+  },
+  {
+    "input_text": "I've been experiencing a tight feeling in my throat since earlier today.",
+    "duration_phrase": "since earlier today",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Acute throat symptoms may escalate if breathing or swallowing is affected."
+  },
+  {
+    "input_text": "I've had dull pain in my right calf for about a week now.",
+    "duration_phrase": "about a week",
+    "duration_days_min": 6,
+    "duration_days_max": 8,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Persistent limb pain requires assessment to rule out vascular causes."
+  },
+  {
+    "input_text": "I've been waking up with headaches almost every day this past fortnight.",
+    "duration_phrase": "this past fortnight",
+    "duration_days_min": 14,
+    "duration_days_max": 14,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Frequent headaches over two weeks suggest chronic pattern."
+  },
+  {
+    "input_text": "I've had a sore spot on my gums for several days.",
+    "duration_phrase": "for several days",
+    "duration_days_min": 3,
+    "duration_days_max": 6,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Localized oral pain over days is usually non-urgent."
+  },
+  {
+    "input_text": "I've been feeling unusually anxious on and off since last exam season.",
+    "duration_phrase": "since last exam season",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Life-event-based timing needs clarification for mental health triage."
+  },
+  {
+    "input_text": "I've had continuous ringing in my left ear for the last seven days.",
+    "duration_phrase": "for the last seven days",
+    "duration_days_min": 7,
+    "duration_days_max": 7,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Persistent unilateral tinnitus requires outpatient evaluation."
+  },
+  {
+    "input_text": "I've been experiencing sharp tooth pain intermittently over the last few days.",
+    "duration_phrase": "over the last few days",
+    "duration_days_min": 2,
+    "duration_days_max": 5,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Dental pain over days is non-emergent unless swelling occurs."
+  },
+  {
+    "input_text": "I've had difficulty swallowing solid food since yesterday night.",
+    "duration_phrase": "since yesterday night",
+    "duration_days_min": 1,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Acute swallowing difficulty may elevate triage priority."
+  },
+  {
+    "input_text": "I've been feeling bloated most evenings for the past three weeks.",
+    "duration_phrase": "for the past three weeks",
+    "duration_days_min": 21,
+    "duration_days_max": 21,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Repeated gastrointestinal symptoms suggest chronic condition."
+  },
+  {
+    "input_text": "I've had redness in my eyes ever since I started using new contact lenses.",
+    "duration_phrase": "ever since I started using new contact lenses",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Product-related onset requires timeline clarification."
+  },
+
+  {
+    "input_text": "I've been experiencing lower abdominal cramps briefly several times today.",
+    "duration_phrase": "today",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Same-day intermittent cramps usually indicate low urgency."
+  },
+  {
+    "input_text": "I've had stiffness in my shoulders for nearly ten days.",
+    "duration_phrase": "nearly ten days",
+    "duration_days_min": 8,
+    "duration_days_max": 10,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Sub-acute musculoskeletal stiffness is typically non-emergent."
+  },
+  {
+    "input_text": "I've been feeling unusually hungry all the time over the last month.",
+    "duration_phrase": "over the last month",
+    "duration_days_min": 30,
+    "duration_days_max": 30,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Sustained appetite changes may indicate metabolic issues."
+  },
+  {
+    "input_text": "I've had burning sensations in my feet late at night for weeks now.",
+    "duration_phrase": "for weeks now",
+    "duration_days_min": 14,
+    "duration_days_max": 42,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Chronic nocturnal symptoms suggest neuropathic causes."
+  },
+  {
+    "input_text": "I've been experiencing mild chest soreness since lifting heavy boxes.",
+    "duration_phrase": "since lifting heavy boxes",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Activity-related onset needs clarification to rule out strain."
+  },
+  {
+    "input_text": "I've had persistent nasal dryness for the past twelve days.",
+    "duration_phrase": "for the past twelve days",
+    "duration_days_min": 12,
+    "duration_days_max": 12,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Prolonged ENT symptoms are typically non-urgent."
+  },
+  {
+    "input_text": "I've been experiencing leg heaviness on and off this entire week.",
+    "duration_phrase": "this entire week",
+    "duration_days_min": 7,
+    "duration_days_max": 7,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Intermittent limb symptoms over a week require monitoring."
+  },
+  {
+    "input_text": "I've had an itchy rash on my forearm since early summer.",
+    "duration_phrase": "since early summer",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Season-linked symptoms suggest chronic dermatological issues."
+  },
+  {
+    "input_text": "I've been experiencing mild nausea most mornings for the last nine days.",
+    "duration_phrase": "for the last nine days",
+    "duration_days_min": 9,
+    "duration_days_max": 9,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Repeated morning symptoms may indicate gastrointestinal or hormonal causes."
+  },
+  {
+    "input_text": "I've had episodes of confusion briefly twice today.",
+    "duration_phrase": "today",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Acute cognitive changes increase triage urgency."
+  },
+
+  {
+    "input_text": "I've been experiencing tingling in my hands for more than two weeks.",
+    "duration_phrase": "for more than two weeks",
+    "duration_days_min": 14,
+    "duration_days_max": null,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Persistent neurological symptoms require outpatient evaluation."
+  },
+  {
+    "input_text": "I've had a scratchy throat intermittently since the start of this month.",
+    "duration_phrase": "since the start of this month",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Calendar-relative onset needs date resolution."
+  },
+  {
+    "input_text": "I've been experiencing muscle fatigue every evening for the last six days.",
+    "duration_phrase": "for the last six days",
+    "duration_days_min": 6,
+    "duration_days_max": 6,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Repeated fatigue patterns may indicate overuse or systemic causes."
+  },
+  {
+    "input_text": "I've had mild swelling around my ankles since yesterday morning.",
+    "duration_phrase": "since yesterday morning",
+    "duration_days_min": 1,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Acute swelling warrants assessment for fluid retention."
+  },
+  {
+    "input_text": "I've been feeling persistent dryness in my eyes for several weeks now.",
+    "duration_phrase": "for several weeks now",
+    "duration_days_min": 21,
+    "duration_days_max": 42,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Chronic ocular symptoms are typically non-urgent."
+  },
+  {
+    "input_text": "I've had episodes of stomach burning after meals over the last ten days.",
+    "duration_phrase": "over the last ten days",
+    "duration_days_min": 10,
+    "duration_days_max": 10,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Persistent post-meal symptoms suggest reflux-related conditions."
+  },
+  {
+    "input_text": "I've been experiencing shoulder weakness briefly since waking up today.",
+    "duration_phrase": "since waking up today",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Acute weakness requires careful monitoring."
+  },
+  {
+    "input_text": "I've had recurring mouth ulcers on and off for months.",
+    "duration_phrase": "for months",
+    "duration_days_min": 60,
+    "duration_days_max": 180,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Chronic intermittent oral symptoms are usually low urgency."
+  },
+  {
+    "input_text": "I've been feeling excessive tiredness most afternoons lately.",
+    "duration_phrase": "lately",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Vague duration; fatigue triage depends on associated symptoms."
+  },
+  {
+    "input_text": "I've had mild pressure behind my ears for just over a week.",
+    "duration_phrase": "just over a week",
+    "duration_days_min": 8,
+    "duration_days_max": 10,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "ENT discomfort over a week is typically non-emergent."
+  },
+  {
+    "input_text": "I've been experiencing brief stabbing pains in my chest for the last hour.",
+    "duration_phrase": "for the last hour",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Even short-duration chest pain requires cautious triage."
+  },
+  {
+    "input_text": "I've had numbness in my lower lip since a dental procedure.",
+    "duration_phrase": "since a dental procedure",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Procedure-linked onset requires timeline clarification."
+  },
+  {
+    "input_text": "I've been experiencing mild tremors in my legs every night this week.",
+    "duration_phrase": "this week",
+    "duration_days_min": 1,
+    "duration_days_max": 7,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Repeated neurological symptoms increase need for evaluation."
+  },
+  {
+    "input_text": "I've had recurring sneezing fits several times daily for the past four days.",
+    "duration_phrase": "for the past four days",
+    "duration_days_min": 4,
+    "duration_days_max": 4,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Short-term allergic symptoms are usually low urgency."
+  },
+  {
+    "input_text": "I've been experiencing a pulling sensation in my lower back since late yesterday.",
+    "duration_phrase": "since late yesterday",
+    "duration_days_min": 1,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Recent musculoskeletal symptoms are usually low urgency unless worsening."
+  },
+  {
+    "input_text": "I've had frequent belching throughout the past four days.",
+    "duration_phrase": "throughout the past four days",
+    "duration_days_min": 4,
+    "duration_days_max": 4,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Persistent gastrointestinal symptoms over several days suggest non-acute causes."
+  },
+  {
+    "input_text": "I've been feeling pressure in my head off and on since the weekend.",
+    "duration_phrase": "since the weekend",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Weekend-based reference needs clarification to assess duration."
+  },
+  {
+    "input_text": "I've had soreness in my elbows for almost two weeks now.",
+    "duration_phrase": "almost two weeks",
+    "duration_days_min": 12,
+    "duration_days_max": 13,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Sub-acute joint pain is typically non-emergent."
+  },
+  {
+    "input_text": "I've been experiencing sudden chills briefly twice today.",
+    "duration_phrase": "today",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Same-day systemic symptoms require monitoring for progression."
+  },
+  {
+    "input_text": "I've had persistent dryness in my throat for over ten days.",
+    "duration_phrase": "for over ten days",
+    "duration_days_min": 10,
+    "duration_days_max": null,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Prolonged throat symptoms may require outpatient evaluation."
+  },
+  {
+    "input_text": "I've been feeling pins and needles in my left arm since early this morning.",
+    "duration_phrase": "since early this morning",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Acute unilateral neurological symptoms increase triage sensitivity."
+  },
+  {
+    "input_text": "I've had discomfort while chewing for the last five days.",
+    "duration_phrase": "for the last five days",
+    "duration_days_min": 5,
+    "duration_days_max": 5,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Persistent jaw-related symptoms are usually non-emergent."
+  },
+  {
+    "input_text": "I've been experiencing occasional wheezing since I adopted a pet.",
+    "duration_phrase": "since I adopted a pet",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Exposure-linked onset needs clarification for allergic causes."
+  },
+  {
+    "input_text": "I've had muscle soreness in my thighs for close to a week.",
+    "duration_phrase": "close to a week",
+    "duration_days_min": 6,
+    "duration_days_max": 7,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Short-term muscle soreness is typically low urgency."
+  },
+
+  {
+    "input_text": "I've been experiencing stomach bloating daily for the past 13 days.",
+    "duration_phrase": "for the past 13 days",
+    "duration_days_min": 13,
+    "duration_days_max": 13,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Persistent daily symptoms suggest chronic gastrointestinal issues."
+  },
+  {
+    "input_text": "I've had mild dizziness occasionally since last winter.",
+    "duration_phrase": "since last winter",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Season-based onset suggests chronicity but needs clarification."
+  },
+  {
+    "input_text": "I've been feeling burning pain in my upper abdomen for nearly nine days.",
+    "duration_phrase": "nearly nine days",
+    "duration_days_min": 8,
+    "duration_days_max": 9,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Sub-acute abdominal pain may indicate gastritis or reflux."
+  },
+  {
+    "input_text": "I've had tightness in my calves most mornings this week.",
+    "duration_phrase": "this week",
+    "duration_days_min": 1,
+    "duration_days_max": 7,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Repeated morning symptoms require monitoring."
+  },
+  {
+    "input_text": "I've been experiencing itching in my ears for the last three days.",
+    "duration_phrase": "for the last three days",
+    "duration_days_min": 3,
+    "duration_days_max": 3,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Short-term ENT symptoms are typically non-urgent."
+  },
+  {
+    "input_text": "I've had sudden bursts of fatigue since yesterday evening.",
+    "duration_phrase": "since yesterday evening",
+    "duration_days_min": 1,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Acute fatigue may require assessment if persistent."
+  },
+  {
+    "input_text": "I've been experiencing mild swelling in my wrists on and off this month.",
+    "duration_phrase": "this month",
+    "duration_days_min": 1,
+    "duration_days_max": 30,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Intermittent joint swelling over weeks suggests non-acute causes."
+  },
+  {
+    "input_text": "I've had a scratchy sensation in my chest when breathing for several days.",
+    "duration_phrase": "for several days",
+    "duration_days_min": 3,
+    "duration_days_max": 6,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Respiratory discomfort over days warrants cautious triage."
+  },
+  {
+    "input_text": "I've been feeling heaviness in my eyelids since starting a new sleep schedule.",
+    "duration_phrase": "since starting a new sleep schedule",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Lifestyle-linked onset requires clarification."
+  },
+  {
+    "input_text": "I've had persistent constipation for the past eight days.",
+    "duration_phrase": "for the past eight days",
+    "duration_days_min": 8,
+    "duration_days_max": 8,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Prolonged bowel changes may need outpatient evaluation."
+  },
+
+  {
+    "input_text": "I've been experiencing sharp knee pain briefly while walking today.",
+    "duration_phrase": "today",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Same-day activity-related pain is usually low urgency."
+  },
+  {
+    "input_text": "I've had a lingering cough mostly at night for the past eleven days.",
+    "duration_phrase": "for the past eleven days",
+    "duration_days_min": 11,
+    "duration_days_max": 11,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Night-predominant cough over days suggests non-acute causes."
+  },
+  {
+    "input_text": "I've been feeling pressure in my bladder intermittently since last Tuesday.",
+    "duration_phrase": "since last Tuesday",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Calendar-relative phrasing needs date resolution."
+  },
+  {
+    "input_text": "I've had soreness at the back of my head for almost a week.",
+    "duration_phrase": "almost a week",
+    "duration_days_min": 6,
+    "duration_days_max": 7,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Short-term head discomfort is typically non-emergent."
+  },
+  {
+    "input_text": "I've been experiencing mild tremors in my fingers briefly today.",
+    "duration_phrase": "today",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Acute neurological symptoms warrant monitoring."
+  },
+  {
+    "input_text": "I've had recurring heartburn after meals for over two weeks now.",
+    "duration_phrase": "for over two weeks",
+    "duration_days_min": 14,
+    "duration_days_max": null,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Persistent reflux symptoms suggest chronic condition."
+  },
+  {
+    "input_text": "I've been feeling stiffness in my jaw every morning for the last six days.",
+    "duration_phrase": "for the last six days",
+    "duration_days_min": 6,
+    "duration_days_max": 6,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Repeated morning jaw stiffness is typically non-urgent."
+  },
+  {
+    "input_text": "I've had a tingling sensation in my scalp since changing hair products.",
+    "duration_phrase": "since changing hair products",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Exposure-related onset needs clarification."
+  },
+  {
+    "input_text": "I've been experiencing lower back fatigue late in the evenings for weeks.",
+    "duration_phrase": "for weeks",
+    "duration_days_min": 14,
+    "duration_days_max": 42,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Chronic fatigue patterns suggest non-acute musculoskeletal issues."
+  },
+  {
+    "input_text": "I've had mild chest fluttering episodes for the past two days.",
+    "duration_phrase": "for the past two days",
+    "duration_days_min": 2,
+    "duration_days_max": 2,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Cardiac-related sensations require cautious triage."
+  },
+  {
+    "input_text": "I've been feeling dryness in my nasal passages since the heating was turned on.",
+    "duration_phrase": "since the heating was turned on",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Environmental onset suggests low urgency but needs context."
+  },
+  {
+    "input_text": "I've had intermittent sharp pain in my ribs for just over three days.",
+    "duration_phrase": "just over three days",
+    "duration_days_min": 4,
+    "duration_days_max": 5,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Short-term localized pain is usually non-emergent."
+  },
+  {
+    "input_text": "I've been experiencing fatigue and heaviness in my legs most days lately.",
+    "duration_phrase": "lately",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Vague duration; triage depends on severity and progression."
+  },
+  {
+    "input_text": "I've had mild swelling under my eyes for the last four mornings.",
+    "duration_phrase": "for the last four mornings",
+    "duration_days_min": 4,
+    "duration_days_max": 4,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Repeated morning swelling suggests non-acute causes."
+  },
+  {
+    "input_text": "I've been experiencing brief shooting pains in my neck since yesterday.",
+    "duration_phrase": "since yesterday",
+    "duration_days_min": 1,
+    "duration_days_max": 1,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Acute neck pain requires monitoring for neurological signs."
+  },
+  {
+    "input_text": "I've been experiencing a dull pulling sensation in my groin since late last night.",
+    "duration_phrase": "since late last night",
+    "duration_days_min": 1,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Recent musculoskeletal discomfort is usually low urgency unless worsening."
+  },
+  {
+    "input_text": "I've had persistent cracking sounds in my knees for the past twelve days.",
+    "duration_phrase": "for the past twelve days",
+    "duration_days_min": 12,
+    "duration_days_max": 12,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Non-painful joint sounds over days are typically non-urgent."
+  },
+  {
+    "input_text": "I've been feeling short bursts of nausea since early afternoon.",
+    "duration_phrase": "since early afternoon",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Acute nausea requires monitoring for progression."
+  },
+  {
+    "input_text": "I've had aching pain in my upper back for nearly eleven days.",
+    "duration_phrase": "nearly eleven days",
+    "duration_days_min": 10,
+    "duration_days_max": 11,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Sub-acute back pain is usually non-emergent."
+  },
+  {
+    "input_text": "I've been experiencing mild breathlessness intermittently throughout today.",
+    "duration_phrase": "throughout today",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Same-day respiratory symptoms require cautious triage."
+  },
+  {
+    "input_text": "I've had irritation at the corners of my mouth for over eight days.",
+    "duration_phrase": "for over eight days",
+    "duration_days_min": 8,
+    "duration_days_max": null,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Persistent localized skin symptoms are typically low urgency."
+  },
+  {
+    "input_text": "I've been feeling a fluttering sensation in my abdomen since I changed my diet.",
+    "duration_phrase": "since I changed my diet",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Diet-linked onset needs clarification to assess duration."
+  },
+  {
+    "input_text": "I've had stiffness in my ankles every morning for the last nine days.",
+    "duration_phrase": "for the last nine days",
+    "duration_days_min": 9,
+    "duration_days_max": 9,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Repeated morning stiffness suggests chronic joint issues."
+  },
+  {
+    "input_text": "I've been experiencing frequent throat clearing for close to three weeks.",
+    "duration_phrase": "close to three weeks",
+    "duration_days_min": 20,
+    "duration_days_max": 21,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Persistent throat symptoms may indicate reflux or allergy."
+  },
+  {
+    "input_text": "I've had sudden sharp pain behind my right ear earlier today.",
+    "duration_phrase": "earlier today",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Acute localized head pain requires monitoring."
+  },
+
+  {
+    "input_text": "I've been feeling a burning sensation in my calves most evenings this week.",
+    "duration_phrase": "this week",
+    "duration_days_min": 1,
+    "duration_days_max": 7,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Repeated evening symptoms suggest non-acute causes."
+  },
+  {
+    "input_text": "I've had intermittent hoarseness in my voice since mid-February.",
+    "duration_phrase": "since mid-February",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Calendar-based onset needs clarification for triage."
+  },
+  {
+    "input_text": "I've been experiencing soreness in my palms for the last six days.",
+    "duration_phrase": "for the last six days",
+    "duration_days_min": 6,
+    "duration_days_max": 6,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Short-term localized soreness is typically low urgency."
+  },
+  {
+    "input_text": "I've had waves of abdominal discomfort on and off since yesterday morning.",
+    "duration_phrase": "since yesterday morning",
+    "duration_days_min": 1,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Acute intermittent abdominal symptoms require monitoring."
+  },
+  {
+    "input_text": "I've been experiencing mild chest tightness briefly during workouts lately.",
+    "duration_phrase": "lately",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Exercise-related symptoms require cautious evaluation."
+  },
+  {
+    "input_text": "I've had persistent dryness on my lips for the past ten days.",
+    "duration_phrase": "for the past ten days",
+    "duration_days_min": 10,
+    "duration_days_max": 10,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Prolonged dryness is typically low urgency."
+  },
+  {
+    "input_text": "I've been feeling sudden weakness in my grip earlier this morning.",
+    "duration_phrase": "earlier this morning",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Acute weakness requires careful triage."
+  },
+  {
+    "input_text": "I've had mild pressure around my temples for nearly four days.",
+    "duration_phrase": "nearly four days",
+    "duration_days_min": 3,
+    "duration_days_max": 4,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Short-term head pressure is usually non-urgent."
+  },
+  {
+    "input_text": "I've been experiencing occasional hiccups since I started new medication.",
+    "duration_phrase": "since I started new medication",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Medication-linked onset needs clarification."
+  },
+  {
+    "input_text": "I've had soreness along my rib cage for the last fourteen days.",
+    "duration_phrase": "for the last fourteen days",
+    "duration_days_min": 14,
+    "duration_days_max": 14,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Sub-acute chest wall pain is usually non-emergent."
+  },
+
+  {
+    "input_text": "I've been experiencing tingling sensations in my tongue since waking up today.",
+    "duration_phrase": "since waking up today",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Acute sensory changes require cautious monitoring."
+  },
+  {
+    "input_text": "I've had recurring itching on my scalp most days this month.",
+    "duration_phrase": "this month",
+    "duration_days_min": 1,
+    "duration_days_max": 30,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Repeated dermatological symptoms over weeks suggest chronicity."
+  },
+  {
+    "input_text": "I've been feeling a stretching sensation in my hamstrings for about ten days.",
+    "duration_phrase": "about ten days",
+    "duration_days_min": 9,
+    "duration_days_max": 11,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Sub-acute muscle symptoms are usually low urgency."
+  },
+  {
+    "input_text": "I've had mild swelling at the base of my thumb since last night.",
+    "duration_phrase": "since last night",
+    "duration_days_min": 1,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Recent joint swelling requires monitoring."
+  },
+  {
+    "input_text": "I've been experiencing brief sharp pains in my lower abdomen for several hours.",
+    "duration_phrase": "for several hours",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Short-duration abdominal pain may escalate if persistent."
+  },
+  {
+    "input_text": "I've had a scratchy feeling in my ears on and off for weeks.",
+    "duration_phrase": "for weeks",
+    "duration_days_min": 14,
+    "duration_days_max": 42,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Chronic intermittent ENT symptoms are typically low urgency."
+  },
+  {
+    "input_text": "I've been experiencing chest discomfort briefly while lying down lately.",
+    "duration_phrase": "lately",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Positional chest symptoms require cautious assessment."
+  },
+  {
+    "input_text": "I've had persistent redness on my cheeks for the past nine days.",
+    "duration_phrase": "for the past nine days",
+    "duration_days_min": 9,
+    "duration_days_max": 9,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Prolonged facial redness is typically non-urgent."
+  },
+  {
+    "input_text": "I've been feeling intermittent buzzing sensations in my legs since spring began.",
+    "duration_phrase": "since spring began",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Season-linked onset suggests chronicity but needs clarification."
+  },
+  {
+    "input_text": "I've had soreness in my upper arms most mornings for the last five days.",
+    "duration_phrase": "for the last five days",
+    "duration_days_min": 5,
+    "duration_days_max": 5,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Repeated morning muscle soreness is usually non-urgent."
+  },
+  {
+    "input_text": "I've been experiencing mild shortness of breath for just over two days.",
+    "duration_phrase": "just over two days",
+    "duration_days_min": 3,
+    "duration_days_max": 4,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Respiratory symptoms over multiple days require attention."
+  },
+  {
+    "input_text": "I've had a dull ache at the base of my skull since the day before yesterday.",
+    "duration_phrase": "since the day before yesterday",
+    "duration_days_min": 2,
+    "duration_days_max": 2,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Short-term head pain is usually non-urgent."
+  },
+  {
+    "input_text": "I've been feeling pressure in my chest intermittently since last evening.",
+    "duration_phrase": "since last evening",
+    "duration_days_min": 1,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Chest symptoms, even intermittent, require careful triage."
+  },
+  {
+    "input_text": "I've had persistent soreness in my heels for the past fifteen days.",
+    "duration_phrase": "for the past fifteen days",
+    "duration_days_min": 15,
+    "duration_days_max": 15,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Chronic foot pain suggests non-acute musculoskeletal issues."
+  },
+  {
+    "input_text": "I've been experiencing brief episodes of blurred hearing since yesterday.",
+    "duration_phrase": "since yesterday",
+    "duration_days_min": 1,
+    "duration_days_max": 1,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Acute sensory changes require monitoring."
+  },
+  {
+    "input_text": "I've been experiencing a constant dull ache in my tailbone since sitting for long hours yesterday.",
+    "duration_phrase": "since sitting for long hours yesterday",
+    "duration_days_min": 1,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Postural pain with recent onset is usually low urgency."
+  },
+  {
+    "input_text": "I've had intermittent fluttering in my chest for roughly three days.",
+    "duration_phrase": "roughly three days",
+    "duration_days_min": 3,
+    "duration_days_max": 3,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Cardiac sensations over several days require cautious assessment."
+  },
+  {
+    "input_text": "I've been feeling soreness in my Achilles tendon every morning since Monday.",
+    "duration_phrase": "since Monday",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Weekday-based onset needs date resolution to assess duration."
+  },
+  {
+    "input_text": "I've had persistent dryness and cracking on my fingertips for the past sixteen days.",
+    "duration_phrase": "for the past sixteen days",
+    "duration_days_min": 16,
+    "duration_days_max": 16,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Chronic skin changes are typically non-urgent."
+  },
+  {
+    "input_text": "I've been experiencing brief episodes of vertigo when turning my head today.",
+    "duration_phrase": "today",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Same-day vertigo requires monitoring for progression."
+  },
+  {
+    "input_text": "I've had mild aching in my forearms for close to four days.",
+    "duration_phrase": "close to four days",
+    "duration_days_min": 3,
+    "duration_days_max": 4,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Short-term muscle pain is usually low urgency."
+  },
+  {
+    "input_text": "I've been feeling pressure behind my nose intermittently since the pollen season started.",
+    "duration_phrase": "since the pollen season started",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Seasonal onset suggests allergic causes but needs clarification."
+  },
+  {
+    "input_text": "I've had a persistent metallic taste in my mouth for the last seventeen days.",
+    "duration_phrase": "for the last seventeen days",
+    "duration_days_min": 17,
+    "duration_days_max": 17,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Prolonged sensory changes may need medication review."
+  },
+  {
+    "input_text": "I've been experiencing sharp pain in my heel briefly while standing today.",
+    "duration_phrase": "today",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Activity-related pain with same-day onset is usually non-urgent."
+  },
+  {
+    "input_text": "I've had episodes of excessive sweating at night for almost three weeks.",
+    "duration_phrase": "almost three weeks",
+    "duration_days_min": 19,
+    "duration_days_max": 20,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Night sweats over weeks increase need for evaluation."
+  },
+
+  {
+    "input_text": "I've been feeling stiffness in my lower spine since resuming gym workouts.",
+    "duration_phrase": "since resuming gym workouts",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Activity-linked onset needs clarification."
+  },
+  {
+    "input_text": "I've had mild burning while swallowing liquids for the past six days.",
+    "duration_phrase": "for the past six days",
+    "duration_days_min": 6,
+    "duration_days_max": 6,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Persistent swallowing discomfort may require outpatient review."
+  },
+  {
+    "input_text": "I've been experiencing brief numbness in my left foot since early yesterday.",
+    "duration_phrase": "since early yesterday",
+    "duration_days_min": 1,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Acute unilateral numbness requires monitoring."
+  },
+  {
+    "input_text": "I've had aching pain around my collarbone for nearly seven days.",
+    "duration_phrase": "nearly seven days",
+    "duration_days_min": 6,
+    "duration_days_max": 7,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Sub-acute localized pain is typically non-emergent."
+  },
+  {
+    "input_text": "I've been feeling persistent heaviness in my stomach most afternoons this fortnight.",
+    "duration_phrase": "this fortnight",
+    "duration_days_min": 1,
+    "duration_days_max": 14,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Repeated gastrointestinal discomfort suggests non-acute causes."
+  },
+  {
+    "input_text": "I've had tingling sensations in my shoulders intermittently since a minor accident.",
+    "duration_phrase": "since a minor accident",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Injury-linked onset needs timeline clarification."
+  },
+  {
+    "input_text": "I've been experiencing persistent eye strain for the last eighteen days.",
+    "duration_phrase": "for the last eighteen days",
+    "duration_days_min": 18,
+    "duration_days_max": 18,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Prolonged eye strain is usually non-urgent."
+  },
+  {
+    "input_text": "I've had sudden cramps in my toes briefly earlier this evening.",
+    "duration_phrase": "earlier this evening",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Acute muscle cramps require hydration assessment."
+  },
+  {
+    "input_text": "I've been feeling mild chest soreness when stretching since last workout.",
+    "duration_phrase": "since last workout",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Exercise-related chest discomfort needs cautious evaluation."
+  },
+  {
+    "input_text": "I've had recurring nasal congestion every morning for the past nineteen days.",
+    "duration_phrase": "for the past nineteen days",
+    "duration_days_min": 19,
+    "duration_days_max": 19,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Persistent congestion suggests chronic ENT issues."
+  },
+
+  {
+    "input_text": "I've been experiencing mild tremors in my jaw briefly since waking up today.",
+    "duration_phrase": "since waking up today",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Acute neurological signs require monitoring."
+  },
+  {
+    "input_text": "I've had soreness in my hip flexors for about twelve days now.",
+    "duration_phrase": "about twelve days",
+    "duration_days_min": 11,
+    "duration_days_max": 13,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Sub-acute muscle pain is usually non-urgent."
+  },
+  {
+    "input_text": "I've been feeling itching around my eyelids since switching face products.",
+    "duration_phrase": "since switching face products",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Product-related onset suggests contact irritation."
+  },
+  {
+    "input_text": "I've had persistent discomfort at the back of my throat for the last twenty days.",
+    "duration_phrase": "for the last twenty days",
+    "duration_days_min": 20,
+    "duration_days_max": 20,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Long-lasting throat symptoms may need evaluation."
+  },
+  {
+    "input_text": "I've been experiencing brief stabbing pain in my ribs when coughing today.",
+    "duration_phrase": "today",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Same-day pain associated with cough usually indicates strain."
+  },
+  {
+    "input_text": "I've had episodes of lightheadedness after meals for almost five days.",
+    "duration_phrase": "almost five days",
+    "duration_days_min": 4,
+    "duration_days_max": 5,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Post-meal symptoms over days warrant monitoring."
+  },
+  {
+    "input_text": "I've been feeling soreness in my knuckles every night this week.",
+    "duration_phrase": "this week",
+    "duration_days_min": 1,
+    "duration_days_max": 7,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Repeated joint symptoms over a week suggest non-acute issues."
+  },
+  {
+    "input_text": "I've had mild burning in my eyes since spending long hours on screens.",
+    "duration_phrase": "since spending long hours on screens",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Lifestyle-linked onset usually lowers urgency."
+  },
+  {
+    "input_text": "I've been experiencing soreness along my jawline for just under two weeks.",
+    "duration_phrase": "just under two weeks",
+    "duration_days_min": 12,
+    "duration_days_max": 13,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Sub-acute jaw discomfort is typically non-emergent."
+  },
+  {
+    "input_text": "I've had persistent bloating after dinner for the past twenty-one days.",
+    "duration_phrase": "for the past twenty-one days",
+    "duration_days_min": 21,
+    "duration_days_max": 21,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Chronic post-meal bloating suggests non-acute GI conditions."
+  },
+  {
+    "input_text": "I've been feeling pressure in my ears since descending from a flight.",
+    "duration_phrase": "since descending from a flight",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Travel-related onset suggests barotrauma but needs timeline."
+  },
+  {
+    "input_text": "I've had soreness in my lower ribs most evenings for the last eight days.",
+    "duration_phrase": "for the last eight days",
+    "duration_days_min": 8,
+    "duration_days_max": 8,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Persistent musculoskeletal pain is usually non-urgent."
+  },
+  {
+    "input_text": "I've been experiencing brief pins-and-needles sensations in my neck since yesterday afternoon.",
+    "duration_phrase": "since yesterday afternoon",
+    "duration_days_min": 1,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Acute neurological sensations require observation."
+  },
+  {
+    "input_text": "I've had ongoing tenderness in my shin for nearly six days.",
+    "duration_phrase": "nearly six days",
+    "duration_days_min": 5,
+    "duration_days_max": 6,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Localized limb tenderness over days is usually non-urgent."
+  },
+  {
+    "input_text": "I've been feeling mild throat tightness intermittently since starting voice training.",
+    "duration_phrase": "since starting voice training",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Activity-related throat symptoms require clarification."
+  },
+  {
+    "input_text": "I've had a constant dull ache in my mid-back for the past twenty-two days.",
+    "duration_phrase": "for the past twenty-two days",
+    "duration_days_min": 22,
+    "duration_days_max": 22,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Chronic back pain suggests non-acute musculoskeletal issues."
+  },
+  {
+    "input_text": "I've been experiencing a mild pulling sensation in my neck since late afternoon.",
+    "duration_phrase": "since late afternoon",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Recent neck discomfort is usually low urgency unless neurological signs appear."
+  },
+  {
+    "input_text": "I've had persistent soreness in my left shoulder blade for the past twenty-three days.",
+    "duration_phrase": "for the past twenty-three days",
+    "duration_days_min": 23,
+    "duration_days_max": 23,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Chronic localized pain suggests non-acute musculoskeletal causes."
+  },
+  {
+    "input_text": "I've been feeling pressure in my forehead intermittently since the rains started.",
+    "duration_phrase": "since the rains started",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Weather-linked onset requires clarification but often indicates sinus issues."
+  },
+  {
+    "input_text": "I've had mild cramps in my calves for almost eight days.",
+    "duration_phrase": "almost eight days",
+    "duration_days_min": 7,
+    "duration_days_max": 8,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Sub-acute muscle cramps are usually non-urgent."
+  },
+  {
+    "input_text": "I've been experiencing brief dizziness when bending over today.",
+    "duration_phrase": "today",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Same-day positional dizziness requires monitoring."
+  },
+  {
+    "input_text": "I've had dryness and irritation around my nostrils for over eleven days.",
+    "duration_phrase": "for over eleven days",
+    "duration_days_min": 11,
+    "duration_days_max": null,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Persistent skin irritation is typically low urgency."
+  },
+  {
+    "input_text": "I've been feeling occasional fluttering sensations in my lower abdomen since changing exercise routines.",
+    "duration_phrase": "since changing exercise routines",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Activity-related onset needs timeline clarification."
+  },
+  {
+    "input_text": "I've had stiffness in my toes every morning for the last ten days.",
+    "duration_phrase": "for the last ten days",
+    "duration_days_min": 10,
+    "duration_days_max": 10,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Repeated morning stiffness suggests chronic joint strain."
+  },
+  {
+    "input_text": "I've been experiencing frequent throat dryness for close to four weeks.",
+    "duration_phrase": "close to four weeks",
+    "duration_days_min": 26,
+    "duration_days_max": 28,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Prolonged throat dryness may require outpatient evaluation."
+  },
+  {
+    "input_text": "I've had sudden sharp pain near my collarbone earlier this morning.",
+    "duration_phrase": "earlier this morning",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Acute localized pain requires monitoring for progression."
+  },
+
+  {
+    "input_text": "I've been feeling a warm sensation in my hands most evenings this week.",
+    "duration_phrase": "this week",
+    "duration_days_min": 1,
+    "duration_days_max": 7,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Repeated sensory changes over a week suggest non-acute causes."
+  },
+  {
+    "input_text": "I've had intermittent hoarseness in my voice since a recent cold.",
+    "duration_phrase": "since a recent cold",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Illness-linked onset needs clarification for recovery timeline."
+  },
+  {
+    "input_text": "I've been experiencing soreness in my forefoot for the last seven days.",
+    "duration_phrase": "for the last seven days",
+    "duration_days_min": 7,
+    "duration_days_max": 7,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Persistent foot pain is usually non-emergent."
+  },
+  {
+    "input_text": "I've had waves of abdominal tightness on and off since last night.",
+    "duration_phrase": "since last night",
+    "duration_days_min": 1,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Recent intermittent abdominal symptoms require monitoring."
+  },
+  {
+    "input_text": "I've been experiencing mild chest pressure briefly during deep breaths lately.",
+    "duration_phrase": "lately",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Breath-related chest symptoms require cautious assessment."
+  },
+  {
+    "input_text": "I've had persistent peeling skin on my palms for the past twenty-four days.",
+    "duration_phrase": "for the past twenty-four days",
+    "duration_days_min": 24,
+    "duration_days_max": 24,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Chronic dermatological changes are typically non-urgent."
+  },
+  {
+    "input_text": "I've been feeling sudden weakness in my ankles earlier today.",
+    "duration_phrase": "earlier today",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Acute joint weakness requires observation."
+  },
+  {
+    "input_text": "I've had mild pressure behind my eyes for nearly five days.",
+    "duration_phrase": "nearly five days",
+    "duration_days_min": 4,
+    "duration_days_max": 5,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Short-term sinus-like pressure is usually non-urgent."
+  },
+  {
+    "input_text": "I've been experiencing occasional hiccups since increasing caffeine intake.",
+    "duration_phrase": "since increasing caffeine intake",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Diet-related onset suggests low urgency."
+  },
+  {
+    "input_text": "I've had soreness along my lower ribs for the last sixteen days.",
+    "duration_phrase": "for the last sixteen days",
+    "duration_days_min": 16,
+    "duration_days_max": 16,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Sub-acute chest wall pain is typically non-emergent."
+  },
+
+  {
+    "input_text": "I've been experiencing tingling sensations in my gums since waking up yesterday.",
+    "duration_phrase": "since waking up yesterday",
+    "duration_days_min": 1,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Acute oral sensory changes require monitoring."
+  },
+  {
+    "input_text": "I've had recurring itching on my upper arms most days this fortnight.",
+    "duration_phrase": "this fortnight",
+    "duration_days_min": 1,
+    "duration_days_max": 14,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Repeated dermatological symptoms suggest chronic irritation."
+  },
+  {
+    "input_text": "I've been feeling a stretching sensation in my lower spine for about eleven days.",
+    "duration_phrase": "about eleven days",
+    "duration_days_min": 10,
+    "duration_days_max": 12,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Sub-acute back discomfort is usually non-urgent."
+  },
+  {
+    "input_text": "I've had mild swelling at the base of my big toe since yesterday evening.",
+    "duration_phrase": "since yesterday evening",
+    "duration_days_min": 1,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Acute joint swelling requires observation."
+  },
+  {
+    "input_text": "I've been experiencing brief sharp pain in my lower abdomen for the past few hours.",
+    "duration_phrase": "for the past few hours",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Short-duration abdominal pain may escalate if persistent."
+  },
+  {
+    "input_text": "I've had a scratchy sensation in my throat on and off for several weeks now.",
+    "duration_phrase": "for several weeks now",
+    "duration_days_min": 21,
+    "duration_days_max": 42,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Chronic throat symptoms are typically non-urgent."
+  },
+  {
+    "input_text": "I've been experiencing chest discomfort briefly while laughing since last week.",
+    "duration_phrase": "since last week",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Activity-related chest symptoms require careful triage."
+  },
+  {
+    "input_text": "I've had persistent redness on my nose for the past ten days.",
+    "duration_phrase": "for the past ten days",
+    "duration_days_min": 10,
+    "duration_days_max": 10,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Prolonged localized redness is typically non-urgent."
+  },
+  {
+    "input_text": "I've been feeling intermittent buzzing sensations in my forearms since early spring.",
+    "duration_phrase": "since early spring",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Seasonal onset suggests chronicity but needs clarification."
+  },
+  {
+    "input_text": "I've had soreness in my upper thighs most evenings for the last six days.",
+    "duration_phrase": "for the last six days",
+    "duration_days_min": 6,
+    "duration_days_max": 6,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Repeated muscle soreness is usually non-urgent."
+  },
+  {
+    "input_text": "I've been experiencing mild shortness of breath for just under three days.",
+    "duration_phrase": "just under three days",
+    "duration_days_min": 2,
+    "duration_days_max": 3,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Respiratory symptoms over multiple days require attention."
+  },
+  {
+    "input_text": "I've had a dull ache in my upper neck since the night before last.",
+    "duration_phrase": "since the night before last",
+    "duration_days_min": 2,
+    "duration_days_max": 2,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Short-term neck pain is usually non-urgent."
+  },
+  {
+    "input_text": "I've been feeling pressure in my chest intermittently since yesterday afternoon.",
+    "duration_phrase": "since yesterday afternoon",
+    "duration_days_min": 1,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Chest symptoms require cautious triage even if intermittent."
+  },
+  {
+    "input_text": "I've had persistent soreness in my arches for the past seventeen days.",
+    "duration_phrase": "for the past seventeen days",
+    "duration_days_min": 17,
+    "duration_days_max": 17,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Chronic foot discomfort suggests non-acute causes."
+  },
+  {
+    "input_text": "I've been experiencing brief ringing sensations in my right ear since yesterday.",
+    "duration_phrase": "since yesterday",
+    "duration_days_min": 1,
+    "duration_days_max": 1,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Acute auditory changes require monitoring."
+  },
+  {
+    "input_text": "I've been experiencing a mild pulling sensation in my right groin since early yesterday.",
+    "duration_phrase": "since early yesterday",
+    "duration_days_min": 1,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Recent musculoskeletal discomfort is typically low urgency."
+  },
+  {
+    "input_text": "I've had persistent soreness in my lower jaw for the past twenty-five days.",
+    "duration_phrase": "for the past twenty-five days",
+    "duration_days_min": 25,
+    "duration_days_max": 25,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Chronic jaw discomfort suggests non-acute causes."
+  },
+  {
+    "input_text": "I've been feeling pressure behind my left eye intermittently since the foggy weather began.",
+    "duration_phrase": "since the foggy weather began",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Weather-linked onset may indicate sinus involvement."
+  },
+  {
+    "input_text": "I've had mild cramps in my feet for almost nine days.",
+    "duration_phrase": "almost nine days",
+    "duration_days_min": 8,
+    "duration_days_max": 9,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Sub-acute muscle cramps are usually non-urgent."
+  },
+  {
+    "input_text": "I've been experiencing brief dizziness while standing up quickly today.",
+    "duration_phrase": "today",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Same-day positional dizziness requires hydration assessment."
+  },
+  {
+    "input_text": "I've had dryness and cracking on my heels for over twelve days.",
+    "duration_phrase": "for over twelve days",
+    "duration_days_min": 12,
+    "duration_days_max": null,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Persistent skin changes are typically low urgency."
+  },
+  {
+    "input_text": "I've been feeling occasional fluttering sensations in my chest since changing sleep schedules.",
+    "duration_phrase": "since changing sleep schedules",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Lifestyle-related onset requires clarification."
+  },
+  {
+    "input_text": "I've had stiffness in my fingers every night for the last eleven days.",
+    "duration_phrase": "for the last eleven days",
+    "duration_days_min": 11,
+    "duration_days_max": 11,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Repeated joint stiffness suggests chronic strain."
+  },
+  {
+    "input_text": "I've been experiencing frequent throat clearing for close to five weeks.",
+    "duration_phrase": "close to five weeks",
+    "duration_days_min": 33,
+    "duration_days_max": 35,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Prolonged throat symptoms may require evaluation."
+  },
+  {
+    "input_text": "I've had sudden sharp pain near my right temple earlier this evening.",
+    "duration_phrase": "earlier this evening",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Acute localized head pain requires monitoring."
+  },
+
+  {
+    "input_text": "I've been feeling a warm sensation in my calves most afternoons this week.",
+    "duration_phrase": "this week",
+    "duration_days_min": 1,
+    "duration_days_max": 7,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Repeated sensory changes suggest non-acute causes."
+  },
+  {
+    "input_text": "I've had intermittent hoarseness in my voice since returning from travel.",
+    "duration_phrase": "since returning from travel",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Travel-linked onset needs clarification."
+  },
+  {
+    "input_text": "I've been experiencing soreness in my mid-foot for the last eight days.",
+    "duration_phrase": "for the last eight days",
+    "duration_days_min": 8,
+    "duration_days_max": 8,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Persistent foot pain is usually non-emergent."
+  },
+  {
+    "input_text": "I've had waves of abdominal tightness on and off since late last night.",
+    "duration_phrase": "since late last night",
+    "duration_days_min": 1,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Recent intermittent abdominal symptoms require monitoring."
+  },
+  {
+    "input_text": "I've been experiencing mild chest pressure briefly during stretching exercises lately.",
+    "duration_phrase": "lately",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Activity-related chest symptoms require cautious assessment."
+  },
+  {
+    "input_text": "I've had persistent peeling skin on my elbows for the past twenty-six days.",
+    "duration_phrase": "for the past twenty-six days",
+    "duration_days_min": 26,
+    "duration_days_max": 26,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Chronic dermatological findings are typically low urgency."
+  },
+  {
+    "input_text": "I've been feeling sudden weakness in my toes earlier today.",
+    "duration_phrase": "earlier today",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Acute localized weakness requires observation."
+  },
+  {
+    "input_text": "I've had mild pressure behind my cheeks for nearly six days.",
+    "duration_phrase": "nearly six days",
+    "duration_days_min": 5,
+    "duration_days_max": 6,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Short-term sinus-related pressure is usually non-urgent."
+  },
+  {
+    "input_text": "I've been experiencing occasional hiccups since increasing spicy food intake.",
+    "duration_phrase": "since increasing spicy food intake",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Diet-related onset usually lowers urgency."
+  },
+
+  {
+    "input_text": "I've had soreness along my upper ribs for the last eighteen days.",
+    "duration_phrase": "for the last eighteen days",
+    "duration_days_min": 18,
+    "duration_days_max": 18,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Sub-acute chest wall pain is typically non-emergent."
+  },
+  {
+    "input_text": "I've been experiencing tingling sensations in my gums since early this morning.",
+    "duration_phrase": "since early this morning",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Acute oral sensory changes require monitoring."
+  },
+  {
+    "input_text": "I've had recurring itching on my thighs most days this fortnight.",
+    "duration_phrase": "this fortnight",
+    "duration_days_min": 1,
+    "duration_days_max": 14,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Repeated dermatological symptoms suggest chronic irritation."
+  },
+  {
+    "input_text": "I've been feeling a stretching sensation in my upper spine for about thirteen days.",
+    "duration_phrase": "about thirteen days",
+    "duration_days_min": 12,
+    "duration_days_max": 14,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Sub-acute spinal discomfort is usually non-urgent."
+  },
+  {
+    "input_text": "I've had mild swelling at the base of my index finger since last evening.",
+    "duration_phrase": "since last evening",
+    "duration_days_min": 1,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Recent joint swelling requires observation."
+  },
+  {
+    "input_text": "I've been experiencing brief sharp pain in my upper abdomen for the past hour.",
+    "duration_phrase": "for the past hour",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Short-duration abdominal pain may escalate if persistent."
+  },
+  {
+    "input_text": "I've had a scratchy sensation in my nose on and off for several weeks.",
+    "duration_phrase": "for several weeks",
+    "duration_days_min": 21,
+    "duration_days_max": 42,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Chronic nasal irritation is typically non-urgent."
+  },
+  {
+    "input_text": "I've been experiencing chest discomfort briefly while coughing since last weekend.",
+    "duration_phrase": "since last weekend",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Cough-related chest pain needs cautious assessment."
+  },
+  {
+    "input_text": "I've had persistent redness on my chin for the past eleven days.",
+    "duration_phrase": "for the past eleven days",
+    "duration_days_min": 11,
+    "duration_days_max": 11,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Prolonged localized redness is typically non-urgent."
+  },
+  {
+    "input_text": "I've been feeling intermittent buzzing sensations in my calves since early monsoon season.",
+    "duration_phrase": "since early monsoon season",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Season-linked onset suggests chronicity but needs clarification."
+  },
+  {
+    "input_text": "I've had soreness in my shoulders most evenings for the last seven days.",
+    "duration_phrase": "for the last seven days",
+    "duration_days_min": 7,
+    "duration_days_max": 7,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Repeated muscle soreness is usually non-urgent."
+  },
+  {
+    "input_text": "I've been experiencing mild shortness of breath for just under four days.",
+    "duration_phrase": "just under four days",
+    "duration_days_min": 3,
+    "duration_days_max": 4,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Respiratory symptoms over multiple days require attention."
+  },
+  {
+    "input_text": "I've had a dull ache in my lower neck since the night before yesterday.",
+    "duration_phrase": "since the night before yesterday",
+    "duration_days_min": 2,
+    "duration_days_max": 2,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Short-term neck pain is usually non-urgent."
+  },
+  {
+    "input_text": "I've been feeling pressure in my chest intermittently since earlier this morning.",
+    "duration_phrase": "since earlier this morning",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Chest symptoms require cautious triage."
+  },
+  {
+    "input_text": "I've had persistent soreness in my arches for the past eighteen days.",
+    "duration_phrase": "for the past eighteen days",
+    "duration_days_min": 18,
+    "duration_days_max": 18,
+    "duration_certainty": "EXACT",
+    "clinical_note": "Chronic foot discomfort suggests non-acute causes."
+  },
+  {
+    "input_text": "I've been experiencing brief ringing sensations in my left ear since this morning.",
+    "duration_phrase": "since this morning",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Acute auditory changes require monitoring."
+  },
+  {
+    "input_text": "I've been experiencing a faint burning sensation on my tongue since earlier this afternoon.",
+    "duration_phrase": "since earlier this afternoon",
+    "duration_days_min": 0,
+    "duration_days_max": 1,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Acute oral sensory changes are usually low urgency but require monitoring if persistent."
+  },
+  {
+    "input_text": "I've had intermittent tightness in my lower abdomen for close to six days now.",
+    "duration_phrase": "close to six days",
+    "duration_days_min": 5,
+    "duration_days_max": 6,
+    "duration_certainty": "APPROXIMATE",
+    "clinical_note": "Sub-acute abdominal tightness may warrant evaluation if symptoms worsen."
+  },
+  {
+    "input_text": "I've been feeling mild pressure in my ears on and off since installing an air conditioner.",
+    "duration_phrase": "since installing an air conditioner",
+    "duration_days_min": null,
+    "duration_days_max": null,
+    "duration_certainty": "UNKNOWN",
+    "clinical_note": "Environmental onset suggests low urgency but needs clarification for duration."
+  }
+]
+
+
+
+
+
+
+
+
+

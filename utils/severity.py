@@ -1,69 +1,69 @@
-def assess_severity(intent, entities, model_confidence):
+from model.red_flag_predict import predict_red_flag
+from model.duration_predict import predict_duration
+
+
+def assess_severity(text: str, model_confidence: float):
     """
-    Returns:
-    severity_score (0–10)
-    triage_label (str)
-    reasons (list[str])
+    Central triage decision function.
+    ALWAYS returns exactly 4 values:
+    (severity, action, reasons, severity_score)
     """
 
-    severity = 0
     reasons = []
+    severity_score = 0
 
     # -------------------------
-    # BASE RISK BY INTENT
+    # RED FLAG CHECK (PRIMARY)
     # -------------------------
-    if intent == "INJURY":
-        severity += 4
-        reasons.append("Physical injury reported")
-
-    elif intent == "DISEASE":
-        severity += 3
-        reasons.append("Possible medical condition")
-
-    elif intent == "LIFESTYLE":
-        severity += 1
-        reasons.append("Lifestyle-related concern")
+    try:
+        red_flag, rf_label, rf_conf = predict_red_flag(text)
+        if red_flag:
+            severity_score += 6
+            reasons.append(f"Red flag detected: {rf_label}")
+    except Exception:
+        reasons.append("Red-flag model unavailable")
 
     # -------------------------
-    # RED-FLAG ENTITIES
+    # DURATION CHECK (SECONDARY)
     # -------------------------
-    if entities.get("loss_of_consciousness"):
-        severity += 4
-        reasons.append("Loss of consciousness")
-
-    if entities.get("memory_loss"):
-        severity += 3
-        reasons.append("Memory loss or confusion")
-
-    if entities.get("vomiting"):
-        severity += 2
-        reasons.append("Vomiting")
-
-    if entities.get("fever_days", 0) >= 3:
-        severity += 2
-        reasons.append("Fever lasting multiple days")
-
-    if entities.get("severe_pain"):
-        severity += 2
-        reasons.append("Severe pain")
+    try:
+        min_d, max_d = predict_duration(text)
+        if max_d >= 7:
+            severity_score += 2
+            reasons.append(f"Symptoms may persist ({min_d}-{max_d} days)")
+    except Exception:
+        reasons.append("Duration model unavailable")
 
     # -------------------------
-    # MODEL UNCERTAINTY SAFETY
+    # LOW CONFIDENCE ESCALATION
     # -------------------------
-    if model_confidence < 0.2:
-        severity += 1
+    if model_confidence < 0.30:
+        severity_score += 1
         reasons.append("Low model confidence")
 
-    severity = min(severity, 10)
+    # -------------------------
+    # FINAL DECISION
+    # -------------------------
+    if severity_score >= 7:
+        return (
+            "HIGH",
+            "Seek urgent medical care",
+            reasons,
+            severity_score
+        )
 
-    # -------------------------
-    # TRIAGE DECISION
-    # -------------------------
-    if severity >= 7:
-        triage = "🔴 Seek urgent medical care"
-    elif severity >= 4:
-        triage = "🟡 Consult a doctor"
+    elif severity_score >= 4:
+        return (
+            "MODERATE",
+            "Consult a doctor if symptoms persist",
+            reasons,
+            severity_score
+        )
+
     else:
-        triage = "🟢 Self-care advised"
-
-    return severity, triage, reasons
+        return (
+            "LOW",
+            "Self-care and monitoring advised",
+            reasons,
+            severity_score
+        )

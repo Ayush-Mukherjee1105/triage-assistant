@@ -1,31 +1,40 @@
 # model/xai.py
 
 import torch
-from transformers import XLMRobertaTokenizer, XLMRobertaForSequenceClassification
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
+from config import MODEL_NAME, OUTPUT_DIR
 
-MODEL_PATH = "artifacts/model"
+_model = None
+_tokenizer = None
 
-tokenizer = XLMRobertaTokenizer.from_pretrained(MODEL_PATH)
-model = XLMRobertaForSequenceClassification.from_pretrained(
-    MODEL_PATH,
-    output_attentions=True
-)
-model.eval()
+def _load():
+    global _model, _tokenizer
+    if _model is None:
+        model_dir = f"{OUTPUT_DIR}/train_diagnosis"
+        _tokenizer = AutoTokenizer.from_pretrained(model_dir)
+        _model = AutoModelForSequenceClassification.from_pretrained(model_dir)
+        _model.eval()
 
+def explain(text: str, top_k=5):
+    """
+    Token-level importance via gradient × input (simple, defensible)
+    """
+    _load()
 
-def explain(text, top_k=10):
-    inputs = tokenizer(text, return_tensors="pt", truncation=True)
+    inputs = _tokenizer(text, return_tensors="pt", truncation=True)
+    inputs.requires_grad_(True)
 
-    with torch.no_grad():
-        outputs = model(**inputs)
+    outputs = _model(**inputs)
+    logits = outputs.logits
+    pred_idx = logits.argmax(dim=-1)
 
-    # Last layer attention, averaged across heads
-    attentions = outputs.attentions[-1].mean(dim=1).squeeze()
+    score = logits[0, pred_idx]
+    score.backward()
 
-    tokens = tokenizer.convert_ids_to_tokens(inputs["input_ids"][0])
-    scores = attentions.tolist()
+    grads = inputs["input_ids"].grad.abs().sum(dim=0)
+    tokens = _tokenizer.convert_ids_to_tokens(inputs["input_ids"][0])
 
-    token_scores = list(zip(tokens, scores))
-    token_scores.sort(key=lambda x: x[1], reverse=True)
+    token_scores = list(zip(tokens, grads.tolist()))
+    token_scores = sorted(token_scores, key=lambda x: x[1], reverse=True)
 
     return token_scores[:top_k]
