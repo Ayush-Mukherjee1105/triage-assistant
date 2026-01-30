@@ -39,11 +39,11 @@ Prerequisites: Node.js (or Python/Go—adjust per implementation), Docker (optio
 
 ## Contribution
 - Follow contributor guidelines in CONTRIBUTING.md
-- Open PRs against `main` with linked issue and tests
+- Open PRs against `main` with linked issue and tests.
 - Use conventional commits for changelog automation
 
 ## License
-Specify project license in LICENSE file.
+Specify project license in LICENSE file. 
 
 ## Contacts
-Report bugs or feature requests via the project's issue tracker.
+Report bugs or feature requests via the project's issue tracker. 
