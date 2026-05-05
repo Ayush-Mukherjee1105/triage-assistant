@@ -1,9 +1,14 @@
 import torch
+import matplotlib
+matplotlib.use("Agg")  
+
 import matplotlib.pyplot as plt
 import os
 
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 from config import OUTPUT_DIR
+
+
 
 _model = None
 _tokenizer = None
@@ -94,14 +99,17 @@ def visualize_explanation(text: str):
 
     path = "static/xai_plot.png"
 
+    import matplotlib.pyplot as plt
+
     plt.figure(figsize=(8, 4))
     plt.bar(words, scores)
+
     plt.title("Token Importance (XAI)")
     plt.xlabel("Tokens")
     plt.ylabel("Importance")
-    plt.tight_layout()
 
+    plt.tight_layout()
     plt.savefig(path)
-    plt.close()
+    plt.close("all") 
 
     return path
