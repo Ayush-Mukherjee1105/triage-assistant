@@ -1,40 +1,40 @@
-# model/duration_predict.py
-
 import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 from pathlib import Path
-from config import MODEL_NAME
-
-MODEL_DIR = Path("artifacts/train_duration")
-
-_tokenizer = None
+BASE = Path(__file__).resolve().parent.parent
+MODEL_DIR = BASE / "artifacts" / "train_duration"
+_device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 _model = None
-
-
+_tok = None
 def _load():
-    global _tokenizer, _model
-
-    if _model is None:
-        _tokenizer = AutoTokenizer.from_pretrained(MODEL_DIR)
-        _model = AutoModelForSequenceClassification.from_pretrained(MODEL_DIR)
-        _model.eval()
-
-
+    global _model, _tok
+    if _model is not None:
+        return
+    _tok = AutoTokenizer.from_pretrained(MODEL_DIR)
+    _model = AutoModelForSequenceClassification.from_pretrained(
+        MODEL_DIR,
+        device_map=None,
+        torch_dtype=torch.float32,
+        low_cpu_mem_usage=False
+    )
+    _model.eval()
+    _model.to(_device)
+    
 def predict_duration(text: str):
     _load()
 
-    inputs = _tokenizer(
+    inputs = _tok(
         text,
         return_tensors="pt",
         truncation=True,
-        padding=True
-    )
+        padding=True,
+        max_length=256,
+    ).to(_device)
 
     with torch.no_grad():
-        outputs = _model(**inputs)
-        probs = torch.softmax(outputs.logits, dim=-1)
-        idx = torch.argmax(probs, dim=-1).item()
-        confidence = probs[0][idx].item()
+        out = _model(**inputs)
 
-    label = _model.config.id2label[str(idx)]
-    return label, confidence
+    val = float(out.logits.squeeze().cpu())
+
+    days = max(1, int(round(val)))
+    return days, days + 2

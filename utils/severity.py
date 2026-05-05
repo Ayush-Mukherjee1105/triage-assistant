@@ -1,69 +1,193 @@
-from model.red_flag_predict import predict_red_flag
-from model.duration_predict import predict_duration
-
-
-def assess_severity(text: str, model_confidence: float):
+def assess_severity(
+    is_red_flag: bool,
+    diagnosis_confidence: float,
+    duration_days: int,
+    text: str,
+):
     """
-    Central triage decision function.
-    ALWAYS returns exactly 4 values:
-    (severity, action, reasons, severity_score)
+    Unified severity engine (research-calibrated)
+
+    Combines:
+    - red flag detection
+    - symptom duration
+    - diagnosis confidence
+    - multilingual clinical keywords
+
+    Returns:
+        severity_label (str)
+        severity_score (int)
     """
 
-    reasons = []
-    severity_score = 0
+    # -------------------------------------------------
+    # RULE 1 — RED FLAG OVERRIDE (MOST IMPORTANT)
+    # -------------------------------------------------
 
-    # -------------------------
-    # RED FLAG CHECK (PRIMARY)
-    # -------------------------
-    try:
-        red_flag, rf_label, rf_conf = predict_red_flag(text)
-        if red_flag:
-            severity_score += 6
-            reasons.append(f"Red flag detected: {rf_label}")
-    except Exception:
-        reasons.append("Red-flag model unavailable")
+    if is_red_flag:
+        return "HIGH", 9
 
-    # -------------------------
-    # DURATION CHECK (SECONDARY)
-    # -------------------------
-    try:
-        min_d, max_d = predict_duration(text)
-        if max_d >= 7:
-            severity_score += 2
-            reasons.append(f"Symptoms may persist ({min_d}-{max_d} days)")
-    except Exception:
-        reasons.append("Duration model unavailable")
+    score = 0
+    text_lower = text.lower()
 
-    # -------------------------
-    # LOW CONFIDENCE ESCALATION
-    # -------------------------
-    if model_confidence < 0.30:
-        severity_score += 1
-        reasons.append("Low model confidence")
+    # -------------------------------------------------
+    # RULE 2 — DURATION SIGNAL
+    # -------------------------------------------------
 
-    # -------------------------
-    # FINAL DECISION
-    # -------------------------
-    if severity_score >= 7:
-        return (
-            "HIGH",
-            "Seek urgent medical care",
-            reasons,
-            severity_score
-        )
+    # Persistent symptoms escalate severity
 
-    elif severity_score >= 4:
-        return (
-            "MODERATE",
-            "Consult a doctor if symptoms persist",
-            reasons,
-            severity_score
-        )
+    if duration_days >= 30:
+        score += 3
+
+    elif duration_days >= 14:
+        score += 2
+
+    elif duration_days >= 7:
+        score += 2
+
+    elif duration_days >= 5:
+        score += 1
+
+    # -------------------------------------------------
+    # RULE 3 — DIAGNOSIS CONFIDENCE SIGNAL
+    # -------------------------------------------------
+
+    if diagnosis_confidence >= 0.90:
+        score += 2
+
+    elif diagnosis_confidence >= 0.75:
+        score += 1
+
+    elif diagnosis_confidence < 0.30:
+        score -= 1
+
+    # -------------------------------------------------
+    # RULE 4 — MODERATE PERSISTENCE KEYWORDS
+    # -------------------------------------------------
+
+    moderate_keywords = [
+
+        # English
+        "persistent",
+        "not improving",
+        "getting worse",
+        "continuous",
+        "for days",
+        "for weeks",
+        "still having",
+        "since last week",
+
+        # Hinglish
+        "baar baar",
+        "bar bar",
+        "barbar",
+        "1 week",
+        "ek hafte",
+        "kai din",
+
+        # Hindi
+        "कई दिन",
+        "बार बार",
+        "लगातार",
+
+        # Bengalish
+        "onek din",
+        "koyek din",
+        "bar bar",
+        "1 week dhore",
+
+        # Bengali
+        "কয়েকদিন",
+        "অনেকদিন",
+        "বারবার",
+    ]
+
+    if any(k in text_lower for k in moderate_keywords):
+        score += 1
+
+    # -------------------------------------------------
+    # RULE 5 — HIGH-RISK SYMPTOM KEYWORDS
+    # -------------------------------------------------
+
+    high_keywords = [
+
+        # English
+        "severe",
+        "unbearable",
+        "can't breathe",
+        "breathless",
+        "chest pain",
+        "fainted",
+        "loss of vision",
+        "vomiting blood",
+        "blood in vomit",
+        "seizure",
+        "confusion",
+
+        # Hinglish
+        "saans lene mein dikkat",
+        "saans nahi aa rahi",
+        "chakkar aake gir gaya",
+
+        # Hindi
+        "सांस लेने में दिक्कत",
+        "बेहोश",
+        "तेज दर्द",
+
+        # Bengalish
+        "shash nite oshubidha",
+        "behosh hoye",
+        "khub betha",
+
+        # Bengali
+        "শ্বাস নিতে কষ্ট",
+        "অজ্ঞান",
+        "তীব্র ব্যথা",
+    ]
+
+    if any(k in text_lower for k in high_keywords):
+        score += 3
+
+    # -------------------------------------------------
+    # RULE 6 — COMMON ILLNESS KEYWORDS
+    # -------------------------------------------------
+
+    mild_keywords = [
+        "cough",
+        "cold",
+        "headache",
+        "mild pain",
+        "sore throat",
+        "runny nose",
+        "fever",
+        "vomiting",
+    ]
+
+    if any(k in text_lower for k in mild_keywords):
+        score += 1
+
+    # -------------------------------------------------
+    # RULE 7 — EXTREME LONG DURATION SAFETY
+    # -------------------------------------------------
+
+    if duration_days >= 60:
+        score += 2
+
+    # -------------------------------------------------
+    # CLAMP SCORE
+    # -------------------------------------------------
+
+    score = max(0, min(score, 10))
+
+    # -------------------------------------------------
+    # FINAL CALIBRATED MAPPING
+    # -------------------------------------------------
+
+    if score >= 7:
+        severity = "HIGH"
+
+    elif score >= 3:
+        severity = "MODERATE"
 
     else:
-        return (
-            "LOW",
-            "Self-care and monitoring advised",
-            reasons,
-            severity_score
-        )
+        severity = "LOW"
+
+    return severity, score

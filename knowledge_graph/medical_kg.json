@@ -1,52 +1,102 @@
 {
   "0": {
-    "name": "General wellness",
-    "description": "No clinically significant symptoms detected. The input appears consistent with a normal or healthy state.",
-    "action": "No medical action required"
+    "name": "Acute respiratory condition",
+    "description": "Symptoms suggest an acute respiratory condition affecting breathing or airways.",
+    "action": "Monitor breathing closely. Seek urgent medical care if breathing difficulty or chest tightness develops."
   },
   "1": {
-    "name": "Mild fatigue or stress",
-    "description": "Symptoms may be related to tiredness, stress, or lack of rest.",
-    "action": "Rest, hydrate, and monitor symptoms"
+    "name": "Gastrointestinal issue",
+    "description": "Symptoms indicate a possible gastrointestinal disturbance involving the stomach or digestion.",
+    "action": "Maintain hydration and light meals. Consult a healthcare professional if symptoms persist or worsen."
   },
   "2": {
-    "name": "Headache or neurological discomfort",
-    "description": "Head pain, dizziness, or related neurological discomfort.",
-    "action": "Rest and seek medical advice if persistent"
+    "name": "Migraine or headache disorder",
+    "description": "Symptoms are consistent with a migraine or related headache disorder.",
+    "action": "Rest in a quiet, dark environment and stay hydrated. Seek medical advice if headaches are severe or frequent."
   },
   "3": {
-    "name": "Respiratory symptoms",
-    "description": "Symptoms involving breathing difficulty, cough, or chest discomfort.",
-    "action": "Consult a doctor if breathing becomes difficult"
+    "name": "General viral illness",
+    "description": "Symptoms are consistent with a possible viral illness.",
+    "action": "Rest, maintain hydration, and monitor symptoms. Seek medical care if fever or weakness persists."
   },
   "4": {
-    "name": "Fever or infection",
-    "description": "Elevated body temperature or signs of infection.",
-    "action": "Monitor temperature and seek medical care if fever persists"
+    "name": "Musculoskeletal pain",
+    "description": "Symptoms suggest pain involving muscles, joints, or bones.",
+    "action": "Rest the affected area and avoid strain. Seek medical advice if pain is severe or ongoing."
   },
   "5": {
-    "name": "Musculoskeletal pain",
-    "description": "Pain in muscles, joints, or bones.",
-    "action": "Rest affected area and consult if pain continues"
+    "name": "Upper respiratory infection",
+    "description": "Symptoms indicate a possible upper respiratory tract infection.",
+    "action": "Rest, stay hydrated, and monitor symptoms. Seek medical care if breathing difficulty or high fever develops."
   },
   "6": {
-    "name": "Digestive discomfort",
-    "description": "Indigestion, bloating, or mild stomach discomfort.",
-    "action": "Dietary adjustments and hydration"
+    "name": "Fever-related illness",
+    "description": "Symptoms suggest a fever-related condition or infection.",
+    "action": "Monitor temperature and maintain hydration. Consult a healthcare professional if fever persists."
   },
   "7": {
-    "name": "Nausea or vomiting",
-    "description": "Feeling sick or episodes of vomiting.",
-    "action": "Hydration and medical advice if severe"
+    "name": "Digestive discomfort",
+    "description": "Symptoms suggest mild digestive discomfort such as bloating or indigestion.",
+    "action": "Eat light meals and stay hydrated. Seek medical advice if symptoms persist or worsen."
   },
   "8": {
-    "name": "Gastrointestinal pain",
-    "description": "Stomach ache, abdominal pain, or digestive tract discomfort.",
-    "action": "Consult a doctor if pain persists or worsens"
+    "name": "Tension headache",
+    "description": "Symptoms are consistent with a tension-type headache.",
+    "action": "Rest, manage stress, and stay hydrated. Seek medical advice if headaches become frequent or severe."
   },
   "9": {
-    "name": "Unclassified or unclear symptoms",
-    "description": "The symptoms provided do not clearly match known clinical patterns.",
-    "action": "Monitor symptoms and consult a healthcare professional"
+    "name": "Allergic reaction",
+    "description": "Symptoms may indicate an allergic response.",
+    "action": "Avoid known triggers and monitor symptoms. Seek urgent care if swelling or breathing difficulty occurs."
+  },
+  "10": {
+    "name": "Dehydration symptoms",
+    "description": "Symptoms suggest possible dehydration or fluid imbalance.",
+    "action": "Increase fluid intake and rest. Seek medical care if signs of severe dehydration appear."
+  },
+  "11": {
+    "name": "Non-specific headache",
+    "description": "Symptoms indicate a general headache pattern without clear high-risk features.",
+    "action": "Rest, hydrate, and monitor symptoms. Seek medical advice if headaches persist or worsen."
+  },
+  "12": {
+    "name": "Ear or sinus issue",
+    "description": "Symptoms suggest possible ear discomfort or sinus-related congestion.",
+    "action": "Use supportive care and monitor symptoms. Consult a healthcare professional if symptoms persist."
+  },
+  "13": {
+    "name": "Fatigue-related condition",
+    "description": "Symptoms indicate ongoing tiredness or low energy levels.",
+    "action": "Ensure adequate rest, nutrition, and hydration. Seek medical evaluation if fatigue continues."
+  },
+  "14": {
+    "name": "Throat irritation",
+    "description": "Symptoms suggest throat discomfort or irritation.",
+    "action": "Stay hydrated and rest the voice. Seek medical advice if symptoms persist or worsen."
+  },
+  "15": {
+    "name": "Neurological concern",
+    "description": "Symptoms may indicate a neurological issue requiring careful monitoring.",
+    "action": "Seek prompt medical evaluation, especially if symptoms include fainting, confusion, or vision changes."
+  },
+  "16": {
+    "name": "General dizziness",
+    "description": "Symptoms indicate dizziness or lightheadedness.",
+    "action": "Rest safely and hydrate. Seek medical care if dizziness is severe or recurrent."
+  },
+  "17": {
+    "name": "Abdominal pain",
+    "description": "Symptoms suggest stomach or abdominal discomfort.",
+    "action": "Monitor symptoms and maintain hydration. Seek medical attention if pain is severe or persistent."
+  },
+  "18": {
+    "name": "Nausea or vomiting",
+    "description": "Symptoms indicate nausea or episodes of vomiting.",
+    "action": "Stay hydrated and rest. Seek medical care if vomiting is persistent or severe."
+  },
+  "19": {
+    "name": "Gastrointestinal upset",
+    "description": "Symptoms suggest general digestive disturbance.",
+    "action": "Maintain light meals and hydration. Consult a healthcare professional if symptoms persist."
   }
 }

@@ -27,10 +27,11 @@ artifacts/
 # =========================
 # Dataset Cache / Downloads
 # =========================
-data/cache/
-data/raw/
+data/
 *.csv
 *.tsv
+*.jsonl
+*.json
 
 # =========================
 # HuggingFace / Transformers
@@ -71,3 +72,5 @@ Thumbs.db
 # Sensitive / Generated Files
 # =========================
 label_encoder.pkl
+
+research/

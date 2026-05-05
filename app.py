@@ -1,122 +1,111 @@
-import streamlit as st
-
-from utils.language import detect_language
-from utils.intent import detect_intent
+from flask import Flask, render_template, request
+from utils.language import normalize_text, detect_language
+from utils.translator import translate
+from utils.duration_rules import extract_duration_days, duration_bucket
 from utils.severity import assess_severity
-from knowledge_graph.kg import enrich_prediction
+from utils.diagnosis_sanity import correct_diagnosis
+from utils.xai_explainer import explain, visualize_explanation
+from model.red_flag_predict import predict_red_flag
 from model.diagnosis_predict import predict_diagnosis
-from config import CONFIDENCE_THRESHOLD
-from model.xai import explain
-
-# -------------------------
-# PAGE CONFIG
-# -------------------------
-
-st.set_page_config(
-    page_title="AI Clinical Triage Assistant",
-    layout="centered"
-)
-
-st.title("AI Clinical Triage Assistant")
-st.caption(
-    "AI-assisted preliminary triage guidance — not a medical diagnosis."
-)
-
-text = st.text_area("Describe your symptoms")
-
-# -------------------------
-# ANALYSIS PIPELINE
-# -------------------------
-
-if st.button("Analyze") and text.strip():
-
-    # --- Language ---
-    language, lang_conf = detect_language(text)
-
-    # --- Intent ---
-    intent = detect_intent(text)
-
-    # --- Diagnosis model (informational only) ---
-    label, model_conf = predict_diagnosis(text)
-
-    # --- Severity (PRIMARY, SAFETY-FIRST) ---
-    severity, action, reasons, severity_score = assess_severity(
-        text=text,
-        model_confidence=model_conf
-    )
-
-    # -------------------------
-    # DISPLAY RESULTS
-    # -------------------------
-
-    st.divider()
-    st.subheader("AI Assessment")
-
-    st.write(f"**Detected Language:** {language} (confidence: {lang_conf:.2f})")
-    st.write(f"**Model Confidence:** `{model_conf:.2f}`")
-
-    # -------------------------
-    # SEVERITY
-    # -------------------------
-
-    st.subheader("Severity Assessment")
-
-    if severity == "HIGH":
-        st.error("!!Urgent medical attention recommended!!")
-    elif severity == "MODERATE":
-        st.warning("!Medical evaluation advised!")
-    else:
-        st.success("Self-care advised")
-
-    st.write(f"**Severity Level:** {severity}")
-    st.write(f"**Recommended Action:** {action}")
-    st.write(f"**Severity Score:** {severity_score}/10")
-
-    # -------------------------
-    # INTENT CONTEXT
-    # -------------------------
-
-    if intent == "INJURY":
-        st.info(
-            "Injury-related symptoms detected. "
-            "Watch for worsening pain, confusion, vomiting, or loss of consciousness."
-        )
-
-    elif intent == "LIFESTYLE":
-        st.info(
-            "Lifestyle-related concern detected. "
-            "Stress, sleep disruption, or fatigue may be contributing factors."
-        )
-
-    # -------------------------
-    # DIAGNOSIS + KNOWLEDGE GRAPH
-    # -------------------------
-
-    if model_conf >= CONFIDENCE_THRESHOLD:
-        st.subheader("Likely Condition (Model-Assisted)")
-        st.write(f"**Likely Condition:** {label}")
-
-        guidance = enrich_prediction(label)
-        st.write(guidance["description"])
-        st.write(f"**Suggested Care Path:** {guidance['action']}")
-    else:
-        st.warning(
-            "This assessment is precautionary due to low model confidence. "
-            "Providing more symptom details may improve accuracy."
-        )
-
-    # -------------------------
-    # EXPLANATION
-    # -------------------------
-
-    st.subheader("Model Explanation (XAI)")
+from model.label_map import decode_label
+from knowledge_graph.kg import enrich_diagnosis
+# Flask init
+app = Flask(__name__)
+# HOME
+@app.route("/")
+def home():
+    return render_template("index.html")
+# ANALYZE
+@app.route("/analyze", methods=["POST"])
+def analyze():
     try:
-        explanations = explain(text)
-        for tok, score in explanations:
-            st.write(f"`{tok}` → {score:.4f}")
-    except Exception:
-        st.write("Explanation unavailable.")
-        
-    st.caption(
-        "⚠️ This tool does not replace professional medical advice."
-    )
+        raw_text = request.form.get("text", "").strip()
+        if not raw_text:
+            return render_template(
+                "index.html",
+                error="Please enter symptoms."
+            )
+        # LANGUAGE DETECTION
+        detected_lang = detect_language(raw_text)
+        # NORMALIZATION
+        normalized = normalize_text(raw_text)
+        # RED FLAG
+        is_red, rf_label, rf_conf = predict_red_flag(normalized)
+        # DURATION
+        days = extract_duration_days(normalized)
+        duration_text = duration_bucket(days)
+        # DIAGNOSIS
+        enhanced_text = f"{normalized} duration {duration_text}"
+        diag_label, diag_conf = predict_diagnosis(enhanced_text)
+        # clinical sanity correction
+        diag_label = correct_diagnosis(diag_label, normalized)
+        # SEVERITY
+        severity, severity_score = assess_severity(
+            is_red_flag=is_red,
+            diagnosis_confidence=diag_conf,
+            duration_days=days,
+            text=normalized
+        )
+        # LABEL + KNOWLEDGE GRAPH
+        diag_name = decode_label(diag_label)
+        kg_info = enrich_diagnosis(diag_label)
+        desc = kg_info.get("description", diag_name)
+        action = kg_info.get(
+            "action",
+            "Consult a healthcare professional if symptoms persist."
+        )
+        # MULTILINGUAL MIRRORING
+        desc = translate(desc, detected_lang)
+        action = translate(action, detected_lang)
+
+        # -----------------------------
+        # XAI
+        # -----------------------------
+
+        try:
+
+            xai_tokens = explain(normalized)
+            xai_image = visualize_explanation(normalized)
+
+        except Exception as e:
+
+            print("XAI ERROR:", e)
+            xai_tokens = []
+            xai_image = None
+
+        # -----------------------------
+        # RESULT OBJECT
+        # -----------------------------
+
+        result = {
+            "severity": severity,
+            "severity_score": severity_score,
+            "red_flag": rf_label,
+            "duration": duration_text,
+            "diagnosis": diag_name,
+            "confidence": round(diag_conf, 3),
+            "description": desc,
+            "action": action,
+            "language": detected_lang,
+            "xai_tokens": xai_tokens,
+            "xai_image": xai_image
+        }
+
+        return render_template("index.html", result=result)
+
+    except Exception as e:
+
+        print("ANALYZE ERROR:", e)
+
+        return render_template(
+            "index.html",
+            error="System error occurred. Please try again."
+        )
+
+
+# =========================================================
+# MAIN
+# =========================================================
+
+if __name__ == "__main__":
+    app.run(debug=True)

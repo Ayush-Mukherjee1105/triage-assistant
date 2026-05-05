@@ -1,5 +1,3 @@
-# model/xai.py
-
 import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 from config import MODEL_NAME, OUTPUT_DIR
@@ -22,7 +20,7 @@ def explain(text: str, top_k=5):
     _load()
 
     inputs = _tokenizer(text, return_tensors="pt", truncation=True)
-    inputs.requires_grad_(True)
+    inputs["input_ids"].requires_grad_(True)
 
     outputs = _model(**inputs)
     logits = outputs.logits

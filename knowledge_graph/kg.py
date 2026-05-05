@@ -1,15 +1,12 @@
 import json
 from pathlib import Path
 
-# Resolve path safely
 BASE_DIR = Path(__file__).resolve().parent.parent
 KG_FILE = BASE_DIR / "knowledge_graph" / "medical_kg.json"
 
-# Load KG once (safe)
 def _load_kg():
     if not KG_FILE.exists():
         return {}
-
     try:
         with open(KG_FILE, "r", encoding="utf-8") as f:
             return json.load(f)
@@ -18,15 +15,10 @@ def _load_kg():
 
 MEDICAL_KG = _load_kg()
 
-
 def enrich_prediction(label: str) -> dict:
-    """
-    Returns conservative clinical guidance.
-    Never hallucinates.
-    Never crashes.
-    """
+    key = label.replace("LABEL_", "")
+    entry = MEDICAL_KG.get(key)
 
-    entry = MEDICAL_KG.get(label)
 
     if not entry:
         return {
@@ -34,18 +26,11 @@ def enrich_prediction(label: str) -> dict:
             "action": "Monitor symptoms and consult a healthcare professional if they worsen."
         }
 
-    # Defensive access
-    description = entry.get(
-        "description",
-        "General medical condition detected."
-    )
-
-    action = entry.get(
-        "action",
-        "Seek medical advice if symptoms persist or worsen."
-    )
-
     return {
-        "description": description,
-        "action": action
+        "description": entry.get("description", "General medical condition detected."),
+        "action": entry.get("action", "Seek medical advice if symptoms persist.")
     }
+
+# Alias for app.py
+def enrich_diagnosis(label: str) -> dict:
+    return enrich_prediction(label)
