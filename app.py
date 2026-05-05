@@ -50,10 +50,13 @@ def analyze():
         diag_name = decode_label(diag_label)
         kg_info = enrich_diagnosis(diag_label)
         desc = kg_info.get("description", diag_name)
-        action = kg_info.get(
-            "action",
-            "Consult a healthcare professional if symptoms persist."
-        )
+        if is_red:
+            action = "⚠️ URGENT: Seek immediate medical care or go to the nearest emergency facility."
+        else:
+            action = kg_info.get(
+                "action",
+                "Consult a healthcare professional if symptoms persist."
+            )
         # MULTILINGUAL MIRRORING
         desc = translate(desc, detected_lang)
         action = translate(action, detected_lang)
